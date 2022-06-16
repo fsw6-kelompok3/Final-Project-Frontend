@@ -1,0 +1,99 @@
+.title {
+  margin-bottom: 16px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  color: #000;
+}
+.btnFilterContainer {
+  display: flex;
+}
+.btnFilterActive {
+  margin-right: 16px;
+  padding: 14px 24px;
+  background: #008f8c;
+  border-radius: 12px;
+  border: none;
+  color: #fff;
+  display: flex;
+}
+.btnFilter {
+  margin-right: 16px;
+  padding: 14px 24px;
+  background: #7ac1c0;
+  border-radius: 12px;
+  border: none;
+  color: #000;
+}
+.btnFilterActive:hover {
+  background: rgb(0, 143, 140, 0.5);
+  color: #000;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.text {
+  margin-left: 8px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.btnContainer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card {
+  padding: 8px 8px 16px;
+  width: 190px;
+  height: 320px;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.imgProduk {
+  border-radius: 4px;
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+}
+.judul {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+  height: 40px;
+  margin: 8px 0px 4px 0px;
+}
+.pengarang {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  margin-top: 12px;
+  color: #8a8a8a;
+  margin-bottom: 0;
+}
+.harga {
+  height: 20px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+  margin-top: 8px;
+}
