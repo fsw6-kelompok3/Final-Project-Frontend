@@ -1,53 +1,60 @@
 import Head from "next/head";
 import Image from "next/image";
 import Layout from "../components/general/Layout";
+import HomeBanner from "../components/home/HomeBanner";
+
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
-    <Layout>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A aliquam
-      laudantium numquam, magni cum deleniti quae modi labore repudiandae
-      exercitationem laboriosam ipsam beatae, eos nesciunt earum, in harum
-      similique consequuntur! Lorem ipsum dolor sit amet, consectetur
-      adipisicing elit. Eius sit quam aut, officia natus nesciunt dicta maiores
-      odio ducimus fugit impedit totam, laboriosam rerum obcaecati molestiae
-      inventore, doloremque expedita ad. Lorem ipsum, dolor sit amet consectetur
-      adipisicing elit. Eligendi rem officia quod voluptas, delectus similique
-      cum inventore ipsa laudantium, fugiat voluptatibus in totam recusandae,
-      perspiciatis iure amet. Quasi, accusantium similique. Lorem ipsum dolor
-      sit amet consectetur adipisicing elit. Iure odit mollitia rerum. Deserunt
-      earum provident adipisci voluptatem accusantium, assumenda, laborum aut
-      ducimus natus, labore pariatur ullam laudantium itaque repellendus
-      perferendis. Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-      aliquam laudantium numquam, magni cum deleniti quae modi labore
-      repudiandae exercitationem laboriosam ipsam beatae, eos nesciunt earum, in
-      harum similique consequuntur! Lorem ipsum dolor sit amet, consectetur
-      adipisicing elit. Eius sit quam aut, officia natus nesciunt dicta maiores
-      odio ducimus fugit impedit totam, laboriosam rerum obcaecati molestiae
-      inventore, doloremque expedita ad. Lorem ipsum, dolor sit amet consectetur
-      adipisicing elit. Eligendi rem officia quod voluptas, delectus similique
-      cum inventore ipsa laudantium, fugiat voluptatibus in totam recusandae,
-      perspiciatis iure amet. Quasi, accusantium similique. Lorem ipsum dolor
-      sit amet consectetur adipisicing elit. Iure odit mollitia rerum. Deserunt
-      earum provident adipisci voluptatem accusantium, assumenda, laborum aut
-      ducimus natus, labore pariatur ullam laudantium itaque repellendus
-      perferendis. Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-      aliquam laudantium numquam, magni cum deleniti quae modi labore
-      repudiandae exercitationem laboriosam ipsam beatae, eos nesciunt earum, in
-      harum similique consequuntur! Lorem ipsum dolor sit amet, consectetur
-      adipisicing elit. Eius sit quam aut, officia natus nesciunt dicta maiores
-      odio ducimus fugit impedit totam, laboriosam rerum obcaecati molestiae
-      inventore, doloremque expedita ad. Lorem ipsum, dolor sit amet consectetur
-      adipisicing elit. Eligendi rem officia quod voluptas, delectus similique
-      cum inventore ipsa laudantium, fugiat voluptatibus in totam recusandae,
-      perspiciatis iure amet. Quasi, accusantium similique. Lorem ipsum dolor
-      sit amet consectetur adipisicing elit. Iure odit mollitia rerum. Deserunt
-      earum provident adipisci voluptatem accusantium, assumenda, laborum aut
-      ducimus natus, labore pariatur ullam laudantium itaque repellendus
-      perferendis.
-    </Layout>
-    // <div className={styles.container}>
+    <>
+      <Layout>
+        <HomeBanner/>
+      </Layout>
+    </>
+    // <Layout>
+    //   Lorem ipsum dolor sit amet consectetur adipisicing elit. A aliquam
+    //   laudantium numquam, magni cum deleniti quae modi labore repudiandae
+    //   exercitationem laboriosam ipsam beatae, eos nesciunt earum, in harum
+    //   similique consequuntur! Lorem ipsum dolor sit amet, consectetur
+    //   adipisicing elit. Eius sit quam aut, officia natus nesciunt dicta maiores
+    //   odio ducimus fugit impedit totam, laboriosam rerum obcaecati molestiae
+    //   inventore, doloremque expedita ad. Lorem ipsum, dolor sit amet consectetur
+    //   adipisicing elit. Eligendi rem officia quod voluptas, delectus similique
+    //   cum inventore ipsa laudantium, fugiat voluptatibus in totam recusandae,
+    //   perspiciatis iure amet. Quasi, accusantium similique. Lorem ipsum dolor
+    //   sit amet consectetur adipisicing elit. Iure odit mollitia rerum. Deserunt
+    //   earum provident adipisci voluptatem accusantium, assumenda, laborum aut
+    //   ducimus natus, labore pariatur ullam laudantium itaque repellendus
+    //   perferendis. Lorem ipsum dolor sit amet consectetur adipisicing elit. A
+    //   aliquam laudantium numquam, magni cum deleniti quae modi labore
+    //   repudiandae exercitationem laboriosam ipsam beatae, eos nesciunt earum, in
+    //   harum similique consequuntur! Lorem ipsum dolor sit amet, consectetur
+    //   adipisicing elit. Eius sit quam aut, officia natus nesciunt dicta maiores
+    //   odio ducimus fugit impedit totam, laboriosam rerum obcaecati molestiae
+    //   inventore, doloremque expedita ad. Lorem ipsum, dolor sit amet consectetur
+    //   adipisicing elit. Eligendi rem officia quod voluptas, delectus similique
+    //   cum inventore ipsa laudantium, fugiat voluptatibus in totam recusandae,
+    //   perspiciatis iure amet. Quasi, accusantium similique. Lorem ipsum dolor
+    //   sit amet consectetur adipisicing elit. Iure odit mollitia rerum. Deserunt
+    //   earum provident adipisci voluptatem accusantium, assumenda, laborum aut
+    //   ducimus natus, labore pariatur ullam laudantium itaque repellendus
+    //   perferendis. Lorem ipsum dolor sit amet consectetur adipisicing elit. A
+    //   aliquam laudantium numquam, magni cum deleniti quae modi labore
+    //   repudiandae exercitationem laboriosam ipsam beatae, eos nesciunt earum, in
+    //   harum similique consequuntur! Lorem ipsum dolor sit amet, consectetur
+    //   adipisicing elit. Eius sit quam aut, officia natus nesciunt dicta maiores
+    //   odio ducimus fugit impedit totam, laboriosam rerum obcaecati molestiae
+    //   inventore, doloremque expedita ad. Lorem ipsum, dolor sit amet consectetur
+    //   adipisicing elit. Eligendi rem officia quod voluptas, delectus similique
+    //   cum inventore ipsa laudantium, fugiat voluptatibus in totam recusandae,
+    //   perspiciatis iure amet. Quasi, accusantium similique. Lorem ipsum dolor
+    //   sit amet consectetur adipisicing elit. Iure odit mollitia rerum. Deserunt
+    //   earum provident adipisci voluptatem accusantium, assumenda, laborum aut
+    //   ducimus natus, labore pariatur ullam laudantium itaque repellendus
+    //   perferendis.
+    // </Layout>
+    // // <div className={styles.container}>
     //   <Layout>
     //   <main className={styles.main}>
     //     aaaaaaaa
