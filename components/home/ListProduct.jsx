@@ -69,30 +69,54 @@ export default function ListProduct() {
       <Container>
         <h1 className={styles.title}>Telusuri Kategori</h1>
         <div className={styles.btnFilterContainer}>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Semua</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Novel</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Fiksi</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Horror</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Teknologi</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Ensiklopedia</p>
-          </Button>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Semua</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Novel</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Fiksi</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Horror</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Teknologi</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Ensiklopedia</p>
+              </Button>
+            </a>
+          </Link>
         </div>
         <div className={styles.btnContainer}>
           {buku.map((a) => (
