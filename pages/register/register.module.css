@@ -1,0 +1,71 @@
+.allPage {
+    padding: 0%;
+    margin: 0%;
+    display: flex;
+    font-family: poppins;
+}
+
+.imgLogin img{
+    width: 50vw;
+    height: 50vw;
+    margin-left: 0%;
+}
+
+.logRight{
+    margin-left: 5vw;
+    align-self: center;
+    width: 40vw;
+}
+
+.logRight h2{
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.logLeft h1{
+    color: white;
+    top: 20vw;
+    width:100px;
+    font-weight: 700;
+    position: absolute;
+    margin-left: 50px;
+}
+
+.logInput h5 {
+    margin-bottom: 10px;
+}
+
+.logInput input {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    height: 50px;
+}
+
+.btnLog {
+    color: white;
+    background-color: #008F8C;
+    height: 50px;
+    border-radius: 10px;
+    border-color: white;
+    margin-top: 30px;
+}
+
+.btnLog :hover{
+    color: white;
+    background-color: rgba(0, 143, 140, 0.5);
+    height: 50px;
+    border-radius: 10px;
+    border-color: white;
+    margin-top: 30px;
+}
+
+.logBottom{
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logBottomReg{
+    color: #008F8C;
+}
