@@ -3,12 +3,7 @@
     margin: 0%;
     display: flex;
     font-family: poppins;
-}
-.navTop{
-    display: none;
-}
-.arrow_icons{
-    display: none;
+    padding-top: 7vh;
 }
 
 .imgLogin img{
@@ -52,6 +47,7 @@
     margin-bottom: 10px;
     border-radius: 10px;
     height: 50px;
+    width: 90vh;
 }
 
 .btnLog {
@@ -61,6 +57,7 @@
     border-radius: 10px;
     border-color: white;
     margin-top: 30px;
+    width: 90vh;
 }
 
 .btnLog :hover{
@@ -84,11 +81,8 @@
 
 @media (max-width: 973px) {
 
-    .navTop{
-        display: unset;
-    }
-    .arrow_icons{
-        display: unset;
+    .allPage{
+        justify-content: center;
     }
     
     .logLeft {
@@ -98,7 +92,18 @@
         width: 120vh;
         margin-top: 20vh;
     }
+    .logInput{
+        width: 100vh;
+    }
+    .form-control{
+        align-items: center;
+    }
     .logBottom {
         margin-top: 70vh;
+        justify-content: unset;
+        margin-left: 90px;
+    }
+    .btnLog{
+        place-content: center;
     }
 }

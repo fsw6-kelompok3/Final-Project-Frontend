@@ -2,12 +2,14 @@ import React from 'react';
 import { Container,Button,Search, } from 'react-bootstrap';
 import styles from "./register.module.css";
 import Link from 'next/link';
+import Layout from "../../components/general/Layout"
 
 // import images from 'images/imgLog.jpg';
 // import styles from '../styles/Home.module.css';
 
 export default function Register() {
     return (
+    <Layout>   
     <Container className={styles.allPage}>
         <div className={styles.allPage}>
             <div className={styles.imgLogin}>
@@ -42,6 +44,7 @@ export default function Register() {
             </div>
         </div>
     </Container>
+    </Layout>
     )
 }
 

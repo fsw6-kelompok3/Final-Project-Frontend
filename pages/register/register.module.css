@@ -3,6 +3,7 @@
     margin: 0%;
     display: flex;
     font-family: poppins;
+    padding-top: 7vh;
 }
 
 .imgLogin img{
@@ -68,4 +69,33 @@
 
 .logBottomReg{
     color: #008F8C;
+}
+
+@media (max-width: 973px) {
+
+    .allPage{
+        justify-content: center;
+        padding-top: 100px;
+    }
+    
+    .logLeft {
+        display: none;
+    }
+    .logRightOne{
+        width: 120vh;
+        margin-top: 20vh;
+    }
+    .form-control{
+        align-items: center;
+    }
+    .logInput{
+        width: 100vh;
+    }
+    .logBottom {
+        margin-top: 70vh;
+    }
+    .btnLog{
+        place-content: center;
+        width: 100vh;
+    }
 }
