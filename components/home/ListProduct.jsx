@@ -5,9 +5,11 @@ import { Button, Container } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import ProdukCard from "../produkcard/ProdukCard";
 
 const buku = [
   {
+    id:1,
     image: "/assets/img/titik_nol.jpg",
     judul: "Titik Nol",
     pengarang: "Agustinus Wibowo",
@@ -17,6 +19,7 @@ const buku = [
     harga: "104000",
   },
   {
+    id:2,
     image: "/assets/img/10_Juta_Pertama_dari_Google_AdSense.jpg",
     judul: "10 Juta Pertama dari Google AdSense",
     pengarang: "Jefferly Helianthusonfri",
@@ -26,6 +29,7 @@ const buku = [
     harga: "52000",
   },
   {
+    id:3,
     image: "/assets/img/ensiklopedia_tionghoa.jpg",
     judul: "5000 Tahun Ensiklopedia Tionghoa 1",
     pengarang: "Christine Dkk",
@@ -33,6 +37,7 @@ const buku = [
     harga: "76500",
   },
   {
+    id:4,
     image: "/assets/img/Boruto_12.jpg",
     judul: "Boruto - Naruto Next Generation Vol. 12",
     pengarang: "Masashi Kishimoto",
@@ -40,6 +45,7 @@ const buku = [
     harga: "32000",
   },
   {
+    id:5,
     image: "/assets/img/Konspirasi-Alam-Semesta.jpg",
     judul: "Konspirasi Alam Semesta",
     pengarang: "Fiersa Besari",
@@ -47,6 +53,7 @@ const buku = [
     harga: "63750",
   },
   {
+    id:6,
     image: "/assets/img/bara.jpg",
     judul: "Bara",
     pengarang: "Febrialdi R.",
@@ -54,11 +61,20 @@ const buku = [
     harga: "75650",
   },
   {
+    id:7,
     image: "/assets/img/Hujan-Bulan-Juni-Serpihan-Sajak.jpg",
     judul: "Hujan Bulan Juni - Sepilihan Sajak",
     pengarang: "Sapardi Djoko Damono",
     kategori: "",
     harga: "100000",
+  },
+  {
+    id:8,
+    image: "/assets/img/pinkan_melipat_jarak.jpg",
+    judul: "Pingkan Melipat Jarak (Novel Kedua Trilogi Hujan Bulan Juni)",
+    pengarang: "Sapardi Djoko Damono",
+    kategori: "",
+    harga: "48000",
   },
 ];
 
@@ -69,48 +85,58 @@ export default function ListProduct() {
       <Container>
         <h1 className={styles.title}>Telusuri Kategori</h1>
         <div className={styles.btnFilterContainer}>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Semua</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Novel</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Fiksi</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Horror</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Teknologi</p>
-          </Button>
-          <Button className={styles.btnFilterActive} type="search">
-            <Search className={styles.icon} />
-            <p className={styles.text}>Ensiklopedia</p>
-          </Button>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Semua</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Novel</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Fiksi</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Horror</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Teknologi</p>
+              </Button>
+            </a>
+          </Link>
+          <Link href="">
+            <a>
+              <Button className={styles.btnFilterActive} type="search">
+                <Search className={styles.icon} />
+                <p className={styles.text}>Ensiklopedia</p>
+              </Button>
+            </a>
+          </Link>
         </div>
-        <div className={styles.btnContainer}>
+        <div className={styles.produkContainer}>
           {buku.map((a) => (
-            // eslint-disable-next-line react/jsx-key
-            <Link href="/">
-              <a>
-                <div className={styles.card}>
-                  <img
-                    src={a.image}
-                    alt={a.judul}
-                    className={styles.imgProduk}
-                  />
-                  <p className={styles.pengarang}>{a.pengarang}</p>
-                  <p className={styles.judul}>{a.judul}</p>
-                  <p className={styles.harga}>Rp {a.harga}</p>
-                </div>
-              </a>
-            </Link>
+            <ProdukCard buku={a} key={a.id}/>
           ))}
         </div>
       </Container>

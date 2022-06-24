@@ -68,6 +68,7 @@
   display: flex;
   flex-direction: row;
   background: #008f8c;
+  border-color: #008f8c;
   width: 114px;
   height: 48px;
   align-items: flex-start;
