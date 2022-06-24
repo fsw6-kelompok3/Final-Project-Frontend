@@ -1,0 +1,75 @@
+.header {
+  background-color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 125;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  font-family: poppins;
+}
+.container {
+  display: flex;
+  flex-dirextion: row;
+  justify-content: between;
+  padding: 20px 0px;
+}
+.box1 {
+  display: flex;
+  flex-dirextion: row;
+}
+.search {
+  display: flex;
+  margin-left: 24px;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 16px;
+  width: 444px;
+  height: 48px;
+  left: 260px;
+  top: 18px;
+  background: #eeeeee;
+  border-radius: 16px;
+  border: none;
+}
+.formsearch {
+  background: transparent;
+  /* background: rgba(0, 0, 0, 0); */
+  flex: 1;
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+.formsearch:hover {
+  background: transparent;
+  border: none;
+  outline: none;
+  /* color: #eee; */
+  box-shadow: none;
+  color: #8a8a8a;
+}
+.btnsearch {
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+.iconsearch {
+  width: 24px;
+  height: 24px;
+  color: #8a8a8a;
+  align-item: center;
+}
+
+.btnIcon{
+  width:28px;
+  height:28px;
+  margin-left:27px;
+}
+.btnIcon:hover{
+  color: #008f8c;
+}
