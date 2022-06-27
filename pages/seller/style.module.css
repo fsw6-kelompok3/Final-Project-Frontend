@@ -107,4 +107,21 @@
     height: 13vh;
     border-radius: 20px;
 }
+.containerTwo{
+    display: flex;
+}
 
+.produkContainer {
+    margin-top: 50px;
+    margin-left: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap:10px;
+}
+.produkContainer::after{
+    content: "";
+    flex: auto;
+    justify-content: space-between;
+    position: relative;
+}
