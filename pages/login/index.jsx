@@ -3,12 +3,19 @@ import React, { useState, useEffect } from "react";
 import { Container, Button, Row } from "react-bootstrap";
 import styles from "./css/Login.module.css";
 import Link from "next/link";
+import { Eye, EyeSlash } from "react-bootstrap-icons";
 
 export default function Login() {
   const initialValues = { email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+
+  //eye visibility password
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setShowPassword(showPassword ? false : true);
+  };
 
   const handleChange = (e) => {
     // console.log(e.target);
@@ -85,12 +92,23 @@ export default function Login() {
                   <input
                     required
                     name="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Masukkan password"
                     className={styles.input}
                     value={formValues.password}
                     onChange={handleChange}
                   />
+                  {showPassword === true ? (
+                    <EyeSlash
+                      onClick={togglePasswordVisiblity}
+                      className={styles.eyebtn}
+                    />
+                  ) : (
+                    <Eye
+                      onClick={togglePasswordVisiblity}
+                      className={styles.eyebtn}
+                    />
+                  )}
                   <p className={styles.alert}>{formErrors.password}</p>
                 </div>
 
