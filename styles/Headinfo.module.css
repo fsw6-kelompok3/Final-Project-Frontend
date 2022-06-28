@@ -1,0 +1,22 @@
+.headerBorder {
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputPhoto {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #008f8c;
+  border-radius: 13px;
+}
+.inputPhoto i {
+  color: #fff;
+  font-size: 20px;
+}
