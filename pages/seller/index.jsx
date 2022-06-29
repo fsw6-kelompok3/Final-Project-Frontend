@@ -1,6 +1,6 @@
 import React from "react";
 import { Container,Card,Button,Form,Nav,Navbar, } from "react-bootstrap";
-import { Search } from "react-bootstrap-icons";
+import { Link, Search } from "react-bootstrap-icons";
 import styles from "./style.module.css";
 import Layout from "../../components/general/Layout"
 // import ListProduct from "../../components/home/ListProduct";
@@ -75,6 +75,7 @@ const buku = [
     kategori: "",
     harga: "48000",
     },
+    
     ];
 
 export default function Seller() {
@@ -167,6 +168,15 @@ export default function Seller() {
             </Card.Body>
             </Card>
             <div className={styles.produkContainer}>
+            <Card className={styles.cardPlus}>
+            <Card.Body className={styles.cardFill}>
+            <Button href="/" variant="">
+            <img src="/assets/png/fi_plus.png" alt="" />
+            <br />
+            Tambah Produk
+            </Button>
+            </Card.Body>
+            </Card>
             {buku.map((a) => (
             <ProdukCard buku={a} key={a.id}/>
             ))}
