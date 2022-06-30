@@ -62,7 +62,7 @@ export default function Footer() {
               </a>
               <a className={styles.sosmedLink} href="index.html" target="_blank">
                 <img
-                  src="assets/img/icon_twitch.png"
+                  src="/assets/img/icon_twitch.png"
                   alt="icon"
                   className={styles.img}
                 />
@@ -74,7 +74,7 @@ export default function Footer() {
             <p className={styles.text}>Copyright FSW6-Group3 2022</p>
             <a href="index.html">
               <img
-                src="assets/img/logo.png"
+                src="/assets/img/logo.png"
                 alt="logo"
                 className={styles.logo}
               />
