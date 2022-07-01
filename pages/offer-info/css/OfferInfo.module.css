@@ -1,0 +1,241 @@
+.container {
+  padding-top: 150px;
+  margin-bottom: 200px;
+}
+.containerForm {
+  display: flex;
+  justify-content: center;
+}
+.boxLeft {
+  padding-right: 36px;
+}
+.prevBtn {
+  width: 28px;
+  height: 28px;
+}
+.prevBtn:hover {
+  color: #008f8c;
+}
+.boxRight {
+  padding-left: 36px;
+  width: 50%;
+}
+.containerPenawaran{
+  margin-bottom:40px;
+}
+.boxContainerTop {
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  margin-bottom: 24px;
+}
+.imgPembeli {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+.boxInner {
+  margin-left: 16px;
+}
+.username {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+  margin: 0px;
+}
+.address {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: #8a8a8a;
+  margin: 0px;
+}
+
+.header {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+.boxProduct {
+  margin-top: 24px;
+  width: 100%;
+}
+.boxAttributeProduct {
+  display: flex;
+}
+.imgProduct {
+  width: 5rem;
+  height: 6rem;
+  border-radius: 12px;
+}
+.boxDetailProduct {
+  margin: 0px 0px 16px 16px;
+  width: 100%;
+}
+.boxDetailTop {
+  display: flex;
+  justify-content: space-between;
+}
+.subTitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: #8a8a8a;
+}
+.dateTime {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: #8a8a8a;
+}
+.boxDetailBottom {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+.productName {
+  color: #000000;
+  margin: 0px 0px 4px 0px;
+}
+.price {
+  color: #151515;
+  margin: 0px 0px 4px 0px;
+}
+.offer {
+  color: #151515;
+  margin: 0px 0px 4px 0px;
+}
+.boxBtn {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.btnStatus {
+  width:158px;
+  border-radius: 16px;
+  align-items: center;
+  padding: 8px 0px;
+  background: #fff;
+  border-color: #008f8c;
+  color: #008f8c;
+  margin-right: 8px;
+}
+.btnStatus:hover {
+  color: #fff;
+  background-color: #008f8c;
+  border-color: #008f8c;
+}
+.btnStatus:focus {
+  color: #fff;
+  background-color: #008f8c;
+  border-color: #008f8c;
+}
+.btnWa {
+  border-radius: 16px;
+  align-items: center;
+  width:158px;
+  padding: 8px 0px;
+  background: #008f8c;
+  border-color: #008f8c;
+  margin-left: 8px;
+}
+.btnWa:hover {
+  color: #fff;
+  background-color: #008f8c;
+  border-color: #008f8c;
+}
+.iconSosmed {
+  margin-left: 12px;
+  width: 18px;
+  height: 18px;
+  padding-bottom:4px;
+}
+
+/* modal */
+.modal {
+  width: 360px !important;
+  height: 438px !important;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+}
+.modalHeader {
+  border-bottom: none;
+  padding: 24px 32px;
+}
+.modalTitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000000;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+.modalBody {
+  padding: 0 32px;
+}
+.boxInput {
+  padding-bottom: 8px;
+}
+.modalLabel {
+  display: flex;
+  margin-bottom: 24px;
+}
+.input {
+  color: #008f8c;
+  margin-top: 8px;
+  margin-right: 16px;
+}
+.modalOption {
+  margin: 0;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #151515;
+}
+.modalText {
+  margin: 0;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #8a8a8a;
+}
+
+.modalFooter {
+  border-top: none;
+  padding: 24 32px;
+}
+.btnSubmit {
+  width: 100%;
+  border-radius: 16px;
+  align-items: center;
+  padding: 12px 24px;
+  background: #008f8c;
+  border-color: #008f8c;
+}
+.btnSubmit:hover {
+  color: #fff;
+  background-color: #008f8c;
+  border-color: #008f8c;
+}

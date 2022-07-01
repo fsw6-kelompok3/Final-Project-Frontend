@@ -1,13 +1,13 @@
 import Footer from "../footer/Footer"
 import { NavigationBar } from "../navbar/NavigationBar"
-import { NavLogin } from "../navbar/NavLogin"
+import { NavNoLogin } from "../navbar/NavNoLogin"
 
 
 export default function Layout({ children }) {
   return (
     <>
       {/* <NavigationBar/> */}
-      <NavLogin/>
+      <NavNoLogin/>
       <main>{children}</main>
       <Footer/>
     </>

@@ -45,7 +45,7 @@ export const NavNoLogin = () => {
             {/* <NavbarToggle aria-controls="basic-navbar-nav" /> */}
           </div>
           <div>
-            <Button href="/" className={styles.btn}>
+            <Button href="/register" className={styles.btn}>
               <img src="/assets/img/fi_log-in.png" alt="icon" width="20px" height="20px"/>
               <p className={styles.txt}>Register</p>
             </Button>
