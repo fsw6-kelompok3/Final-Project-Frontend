@@ -17,6 +17,7 @@ const buku = [
     deskripsi:
       "Perjalananku bukan perjalananmu Perjalananku adalah perjalananmu Jauh. Mengapa setiap orang terobsesi oleh kata itu? Marco Polo melintasi perjalanan panjang dari Venesia hingga negeri Mongol. Para pengelana lautan mengarungi samudra luas. Para pendaki menyabung nyawa menaklukkan puncak. Juga terpukau pesona kata “jauh”, si musafir menceburkan diri dalam sebuah perjalanan akbar keliling dunia. Menyelundup ke tanah terlarang di Himalaya, mendiami Kashmir yang misterius, hingga menjadi saksi kemelut perang dan pembantaian. Dimulai dari sebuah mimpi, ini adalah perjuangan untuk mencari sebuah makna. Hingga akhirnya setelah mengelana begitu jauh, si musafir pulang, bersujud di samping ranjang ibunya. Dan justru dari ibunya yang tidak pernah ke mana-mana itulah, dia menemukan satu demi satu makna perjalanan yang selama ini terabaikan. 'Agustinus telah menarik cakrawala yang jauh pada penulisan perjalanan (travel writing) di Indonesia. Penulisan yang dalam, pengalaman yang luar biasa, membuat tulisan ini seperti buku kehidupan. Titik Nol merupakan cara bertutur yang benar-benar baru dalam travel writing di negeri ini.' —Qaris Tajudin, editor Tempo dan penulis novel.",
     harga: "104000",
+    link: "/book"
   },
   {
     id:2,
@@ -27,6 +28,7 @@ const buku = [
     deskripsi:
       "Mau meraih pendapatan dari Google AdSense? Ingin membangun channel YouTube atau blog yang sukses dan bisa menghasilkan pendapatan dari internet? Jika ya, Google AdSense bisa jadi salah satu solusinya. Melalui Google AdSense, kita bisa menampilkan iklan guna menghasilkan pendapatan dari website/blog/channel YouTube/konten kita di internet. Buku ini adalah panduan lengkap untuk Anda yang ingin belajar tentang Google AdSense. Tak hanya itu, buku ini berisi panduan langkah demi langkah membangun website ataupun channel YouTube yang bisa Anda monetisasi dengan Google AdSense. Inilah berbagai hal menarik yang dibahas dalam buku ini. ● Pengenalan tentang Google AdSense dan cara kerjanya. ● Panduan lengkap membuat website/blog untuk pemula. Mulai dari awal hingga blog siap dipakai untuk Google AdSense. ● Tips dan panduan menulis konten blog yang bagus dan optimal. ● Panduan lengkap pengelolaan blog memakai WordPress. ● Cara, tips, dan panduan lengkap daftar Google AdSense agar lolos review. ● Cara menghasilkan pendapatan dari YouTube dengan Google AdSense. ● Panduan lengkap membuat dan mengedit video YouTube untuk pemula. ● Tips dan strategi jitu mengelola channel YouTube, hingga meningkatkan subscriber dan penonton YouTube. ● Cara-cara inspiratif monetisasi channel YouTube. Tunggu apalagi, segera dapatkan dan pelajari buku ini. Mulailah perjalanan menyenangkan Anda sebagai content creator di internet bersama Google AdSense.",
     harga: "52000",
+    link: ""
   },
   {
     id:3,
@@ -35,6 +37,7 @@ const buku = [
     pengarang: "Christine Dkk",
     kategori: "",
     harga: "76500",
+    link: ""
   },
   {
     id:4,
@@ -43,6 +46,7 @@ const buku = [
     pengarang: "Masashi Kishimoto",
     kategori: "Fiksi",
     harga: "32000",
+    link: ""
   },
   {
     id:5,
@@ -51,6 +55,7 @@ const buku = [
     pengarang: "Fiersa Besari",
     kategori: "Novel",
     harga: "63750",
+    link: ""
   },
   {
     id:6,
@@ -59,6 +64,7 @@ const buku = [
     pengarang: "Febrialdi R.",
     kategori: "Novel",
     harga: "75650",
+    link:"/book/buyer"
   },
   {
     id:7,
@@ -67,6 +73,7 @@ const buku = [
     pengarang: "Sapardi Djoko Damono",
     kategori: "",
     harga: "100000",
+    link: ""
   },
   {
     id:8,
@@ -75,6 +82,7 @@ const buku = [
     pengarang: "Sapardi Djoko Damono",
     kategori: "",
     harga: "48000",
+    link: ""
   },
 ];
 
@@ -85,7 +93,7 @@ export default function ListProduct() {
       <Container>
         <h1 className={styles.title}>Telusuri Kategori</h1>
         <div className={styles.btnFilterContainer}>
-          <Link href="">
+          <Link href="/">
             <a>
               <Button className={styles.btnFilterActive} type="search">
                 <Search className={styles.icon} />
@@ -93,7 +101,7 @@ export default function ListProduct() {
               </Button>
             </a>
           </Link>
-          <Link href="">
+          <Link href="/">
             <a>
               <Button className={styles.btnFilterActive} type="search">
                 <Search className={styles.icon} />
@@ -101,7 +109,7 @@ export default function ListProduct() {
               </Button>
             </a>
           </Link>
-          <Link href="">
+          <Link href="/">
             <a>
               <Button className={styles.btnFilterActive} type="search">
                 <Search className={styles.icon} />
@@ -109,7 +117,7 @@ export default function ListProduct() {
               </Button>
             </a>
           </Link>
-          <Link href="">
+          <Link href="/">
             <a>
               <Button className={styles.btnFilterActive} type="search">
                 <Search className={styles.icon} />
@@ -117,7 +125,7 @@ export default function ListProduct() {
               </Button>
             </a>
           </Link>
-          <Link href="">
+          <Link href="/">
             <a>
               <Button className={styles.btnFilterActive} type="search">
                 <Search className={styles.icon} />
@@ -125,7 +133,7 @@ export default function ListProduct() {
               </Button>
             </a>
           </Link>
-          <Link href="">
+          <Link href="/">
             <a>
               <Button className={styles.btnFilterActive} type="search">
                 <Search className={styles.icon} />

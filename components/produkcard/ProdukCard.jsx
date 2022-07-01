@@ -9,7 +9,7 @@ export default function ProdukCard(props) {
   return (
     <>
       <div className={styles.card}>
-        <Link href="/">
+        <Link href={buku.link}>
           <a>
             <img
               src={buku.image}
@@ -19,7 +19,7 @@ export default function ProdukCard(props) {
           </a>
         </Link>
         <p className={styles.pengarang}>{buku.pengarang}</p>
-        <Link href="/">
+        <Link href={buku.link}>
           <a>
             <p className={styles.judul}>{buku.judul}</p>
           </a>
