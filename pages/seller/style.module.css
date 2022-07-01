@@ -1,0 +1,133 @@
+.allSeller{
+    font-family: poppins;
+    margin: 0%;
+    padding: 0%;
+}
+.navLogo{
+    width: 100px;
+}
+.navTop{
+    width: 207vh;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.navSearch {
+    display: flex;
+    margin-left: 24px;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 24px;
+    gap: 16px;
+    width: 444px;
+    height: 48px;
+    left: 260px;
+    top: 18px;
+    background: #eeeeee;
+    border-radius: 16px;
+    border: none;
+}
+.formSearch {
+    background: transparent;
+    flex: 1;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+.formSearch:hover {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #8a8a8a;
+}
+.btnSearch {
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+.iconSearch {
+    width: 24px;
+    height: 24px;
+    color: #8a8a8a;
+    align-items: center;
+}
+.btn {
+    display: flex;
+    flex-direction: row;
+    background: #008f8c;
+    width: 114px;
+    height: 48px;
+    align-items: flex-start;
+    padding: 14px;
+    border-radius: 12px;
+}
+/* gap */
+
+.wordOne{
+    padding: 80px 50px 30px 100px;
+    font-weight: bold;
+
+}
+.cardOneBorder{
+    margin-left: 100px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.cardOne{
+    display: flex;
+}
+.cardOne img{
+    width: 70px;
+}
+.btnCard{
+    margin-left: auto;
+    margin-top: 10px;
+}
+.fillCard{
+    padding-left: 25px;
+}
+.cardTwo{
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 20px;
+    height: 55vh;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.formCard{
+    margin-top: 10px;
+    height: 13vh;
+    border-radius: 20px;
+}
+.containerTwo{
+    display: flex;
+}
+.produkContainer {
+    margin-top: 50px;
+    margin-left: 65vh;
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    gap:6vh;
+}
+.produkContainer::after{
+    content: "";
+    flex: auto;
+    justify-content: space-between;
+    position: relative;
+}
+.cardPlus{
+    width: 12rem;
+    height : 20rem;
+    border: 2px dashed #D0D0D0;
+    color: black;
+}
+.cardFill{
+    padding-top: 19vh;
+    justify-self: center;
+    align-self: center;
+}
