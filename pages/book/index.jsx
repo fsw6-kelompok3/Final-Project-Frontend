@@ -56,7 +56,7 @@ export default function index() {
                   </Button>
                 </a>
               </Link>
-              <Link href="">
+              <Link href="/book/add">
                 <a>
                   <Button className={styles.btnEdit} type="search">
                     <p className={styles.text}>Edit</p>
