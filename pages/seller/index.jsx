@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { Container, Card, Button, Form, Nav, Navbar } from "react-bootstrap";
+import { Container, Card, Button, Form, Nav, Navbar, Row, Col } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
 import styles from "./style.module.css";
 import Layout from "../../components/general/Layout";
@@ -95,7 +95,7 @@ const buku = [
 ];
 
 export default function Seller() {
-  return (
+    return (
     <Layout>
       <Container className={styles.allSeller}>
         {/* container dua */}
@@ -165,5 +165,5 @@ export default function Seller() {
         </div>
       </Container>
     </Layout>
-  );
+    );
 }
