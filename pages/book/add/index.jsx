@@ -144,7 +144,7 @@ export default function AddProduct() {
                     multiple
                     name="foto"
                     type="file"
-                    placeholder="+"
+                    accept="image/*"
                     className={styles.input}
                     value={formValues.foto}
                     onChange={handleChange}
