@@ -10,6 +10,15 @@
 .btnFilterContainer {
   display: flex;
 }
+
+@media screen and (min-width: 481px) and (max-width: 767px){
+.btnFilterContainer {
+    display: flex;
+    margin-bottom: 15px;
+    overflow-x: scroll;
+}
+}
+
 .btnFilterActive {
   margin-right: 16px;
   padding: 14px 24px;
