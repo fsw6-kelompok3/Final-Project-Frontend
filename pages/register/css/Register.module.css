@@ -120,11 +120,34 @@
   font-size: 12px;
   line-height: 14px;
   color: #ff0000;
-  margin-top:8px;
+  margin-top: 8px;
 }
 .eyebtn {
   position: absolute;
   margin-left: -35px;
   margin-top: 14px;
   cursor: pointer;
+}
+.boxRadio {
+  display: flex;
+  margin-bottom: 8px;
+  width: 50%;
+}
+.inputRadio {
+  color: #008f8c;
+  /* margin-top: 8px; */
+  margin-right: 16px;
+}
+.labelRadio {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #000000;
+  margin: auto 0;
+}
+.boxInputRadio {
+  display: flex;
+  margin-left: 24px;
 }
