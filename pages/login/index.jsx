@@ -5,14 +5,19 @@ import styles from "./css/Login.module.css";
 import Link from "next/link";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 
+import axios from "../api/axios";
+import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
+import { useRouter } from 'next/router'
+
 export default function Login() {
   const initialValues = { email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
   //eye visibility password
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
   const togglePasswordVisiblity = () => {
     setShowPassword(showPassword ? false : true);
   };
@@ -23,19 +28,6 @@ export default function Login() {
     setFormValues({ ...formValues, [name]: value });
     // console.log(formValues);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-  };
-
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
 
   const validate = (values) => {
     const errors = {};
@@ -57,10 +49,38 @@ export default function Login() {
     return errors;
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setFormErrors(validate(formValues));
+    handleLogin()
+  };
+
+  const handleLogin = async () => {
+    try {
+      const { data } = await axios.post('/auth/login', {
+        email: formValues.email,
+        password: formValues.password,
+      })
+
+      window.localStorage.setItem('token', data.data['token'])
+      router.push('/seller')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    // console.log(formErrors);
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(formValues);
+    }
+  });
+
   return (
     <Container fluid>
       <Row className={styles.container}>
         <div className={styles.loginPanel}>
+
           <div className={styles.logLeft}>
             <div className={styles.brand}>
               <p>
@@ -73,6 +93,7 @@ export default function Login() {
             <div className={styles.form}>
               <p className={styles.header}>Masuk</p>
               <form onSubmit={handleSubmit}>
+
                 <div className={styles.boxInput}>
                   <p className={styles.label}>Email</p>
                   <input
@@ -116,11 +137,11 @@ export default function Login() {
                   variant="primary"
                   type="submit"
                   className={styles.btnSubmit}
-                  //   onClick={notify}
-                  // onChildClose={handleClose}
+                  onClick={handleSubmit}
                 >
                   Masuk
                 </Button>
+
               </form>
 
               <p className={styles.register}>
@@ -134,6 +155,7 @@ export default function Login() {
             </div>
           </div>
         </div>
+
       </Row>
     </Container>
   );

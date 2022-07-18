@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Card, Button, Form, Nav, Navbar, Row, Col } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
 import styles from "./style.module.css";
@@ -14,6 +14,7 @@ import {
   ChevronRight,
 } from "react-bootstrap-icons";
 import Link from "next/link";
+import axios from '../api/axios'
 
 const buku = [
   {
@@ -95,7 +96,27 @@ const buku = [
 ];
 
 export default function Seller() {
-    return (
+
+  const getData = async (e) => {
+    const token = window.localStorage.getItem('token')
+    try {
+      const data = await axios.get('/seller/diminati', {
+        withCredentials: true,
+        headers: {
+          Token: token
+        }
+      });
+      console.log(data)
+    } catch (error) {
+      console.log(error.response)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  })
+
+  return (
     <Layout>
       <Container className={styles.allSeller}>
         {/* container dua */}
@@ -165,5 +186,5 @@ export default function Seller() {
         </div>
       </Container>
     </Layout>
-    );
+  );
 }
