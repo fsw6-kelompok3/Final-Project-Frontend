@@ -10,10 +10,10 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <HomeBanner/>
-        <ListProduct/>
+        <HomeBanner />
+        <ListProduct />
       </Layout>
     </>
-    
+
   );
 }
