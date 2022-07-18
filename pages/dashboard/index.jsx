@@ -97,7 +97,7 @@ const buku = [
 
 export default function Seller() {
 
-  const getData = async (e) => {
+  const getData = async () => {
     const token = window.localStorage.getItem('token')
     try {
       const data = await axios.get('/seller/diminati', {
