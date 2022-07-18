@@ -137,7 +137,7 @@ export default function Seller() {
         <div className={styles.containerTwo}>
           <div className={styles.cardTwo}>
             <p className={styles.header}>Kategori</p>
-            <Link href="/">
+            <Link href="/dashboard">
               <a>
                 <div className={styles.item}>
                   <Box className={styles.icon} />
@@ -147,7 +147,7 @@ export default function Seller() {
               </a>
             </Link>
             <hr />
-            <Link href="/">
+            <Link href="/dashboard/diminati">
               <a>
                 <div className={styles.item}>
                   <Heart className={styles.icon} />
@@ -157,7 +157,7 @@ export default function Seller() {
               </a>
             </Link>
             <hr />
-            <Link href="/">
+            <Link href="/dashboard/terjual">
               <a>
                 <div className={styles.item}>
                   <CurrencyDollar className={styles.icon} />

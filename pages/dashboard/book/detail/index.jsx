@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
-import Layout from "../../../components/general/Layout";
+import Layout from "../../../../components/general/Layout";
 import { ArrowLeftShort } from "react-bootstrap-icons";
 import Link from "next/link";
 import styles from "./AddProduct.module.css";
@@ -153,7 +153,7 @@ export default function AddProduct() {
                 </div>
 
                 <div className={styles.boxBtn}>
-                  <Button href="/book" className={styles.btnPreview}>
+                  <Button href="/dashboard/book" className={styles.btnPreview}>
                     Preview
                   </Button>
 
