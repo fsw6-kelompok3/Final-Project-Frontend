@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 
 export default function Register() {
-  const initialValues = { nama: "", email: "", password: "" };
+  const initialValues = { nama: "", email: "", password: "", jenis: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -101,6 +101,39 @@ export default function Register() {
                     value={formValues.email}
                     onChange={handleChange}
                   />
+                  <p className={styles.alert}>{formErrors.email}</p>
+                </div>
+
+                <div className={styles.boxInput}>
+                  <p className={styles.label}>Jenis Akun</p>
+                  <div className={styles.boxInputRadio}>
+                    <label className={styles.boxRadio}>
+                      <input
+                        required
+                        name="jenis"
+                        type="radio"
+                        className={styles.inputRadio}
+                        checked={formValues.jenis === "user"}
+                        value="user"
+                        onChange={handleChange}
+                      />
+                      <p className={styles.labelRadio}>Pengguna</p>
+                    </label>
+
+                    <label className={styles.boxRadio}>
+                      <input
+                        required
+                        name="jenis"
+                        type="radio"
+                        className={styles.inputRadio}
+                        checked={formValues.jenis === "admin"}
+                        value="admin"
+                        onChange={handleChange}
+                      />
+                      <p className={styles.labelRadio}>Penjual</p>
+                    </label>
+                  </div>
+
                   <p className={styles.alert}>{formErrors.email}</p>
                 </div>
 
