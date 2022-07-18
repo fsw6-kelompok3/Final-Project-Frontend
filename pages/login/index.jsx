@@ -63,7 +63,7 @@ export default function Login() {
       })
 
       window.localStorage.setItem('token', data.data['token'])
-      router.push('/seller')
+      router.push('/dashboard')
     } catch (error) {
       console.log(error)
     }
