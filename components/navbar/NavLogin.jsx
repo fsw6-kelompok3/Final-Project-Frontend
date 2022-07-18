@@ -52,13 +52,13 @@ export const NavLogin = () => {
               </a>
             </Link>
 
-            <Link href="/">
+            <Link href="/offer-info">
               <a>
                 <Bell className={styles.btnIcon} />
               </a>
             </Link>
 
-            <Link href="/">
+            <Link href="/profile">
               <a>
                 <Person className={styles.btnIcon} />
               </a>

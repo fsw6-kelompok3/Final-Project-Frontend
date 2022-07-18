@@ -63,6 +63,7 @@ export default function Login() {
       })
 
       window.localStorage.setItem('token', data.data['token'])
+      window.localStorage.setItem('user', JSON.stringify(data.data))
 
       if (data.data.user.level === 'admin') {
         router.push('/dashboard')
