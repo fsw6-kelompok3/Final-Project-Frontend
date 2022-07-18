@@ -68,8 +68,77 @@
 .btnIcon{
   width:28px;
   height:28px;
+  margin: auto 0;
   margin-left:27px;
 }
 .btnIcon:hover{
   color: #008f8c;
+}
+.btnDropdown{
+  background: #fff!important;
+  color: #008f8c!important;
+  box-shadow: none!important;
+  border-color: #fff!important;
+  padding: 0;
+}
+.btnDropdown:focus{
+  background: #fff!important;
+  color: #008f8c!important;
+  box-shadow: none!important;
+  border-color: #fff!important;
+}
+.btnDropdown:hover{
+  background: #fff!important;
+  color: #008f8c!important;
+  box-shadow: none!important;
+  border-color: #fff!important;
+}
+.btnDropdown.show > .btnDropdown.dropdown-toggle{
+  background: #fff!important;
+  color: #008f8c!important;
+  box-shadow: none!important;
+  border-color: #fff!important;
+}
+.btnDropdown::after {
+  display:none;
+}
+.btnIconDropdown{
+  width:30px;
+  height:30px;
+  margin-left:27px;
+}
+
+.brand{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 28px;
+  color: #151515;
+  padding: 8px 16px;
+  margin:0px;
+}
+.itemDropdown{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 28px;
+  color: #151515;
+  margin: 4px auto;
+}
+.subIcon{
+  margin-right: 12px;
+  width: 20px;
+  height:20px;
+}
+.itemLogout{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #ff0000;
+  margin: 4px auto;
+  text-align: center;
 }
