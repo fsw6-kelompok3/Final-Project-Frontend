@@ -9,10 +9,10 @@ import axios from "axios";
 
 export default function Book() {
   const router = useRouter();
-  const routes = router.query;  //get id from /book
+  const routes = router.query; //get id from /book
 
   const [books, setBooks] = useState([]);
-//   console.log("tampiljannn id", routes.id);
+  //   console.log("tampiljannn id", routes.id);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -59,21 +59,20 @@ export default function Book() {
                 return (
                   <div key={i} className={styles.container}>
                     <div className={styles.sideLeft}>
-                      <Carousel className={styles.carousel}>
-                          {/* {gambarProduk.forEach( */}
-                            <Carousel.Item>
-                            <img
-                              src={a.gambar[0]}
-                              alt="book"
-                              className={styles.img}
-                            />
+                      <Carousel interval={null}className={styles.carousel}>
+                        {a.gambar.map((data, i) => (
+                          <Carousel.Item key={i}>
+                            <img src={data} alt="book" className={styles.img} />
                           </Carousel.Item>
-                          {/* )} */}
+                        ))}
+                        {/* {gambarProduk.forEach( */}
+
+                        {/* )} */}
                         {/* {books.gambar.map((gambar) => {
                           return (
                             <> */}
-                              
-                            {/* </>
+
+                        {/* </>
                           );
                         })} */}
                       </Carousel>
@@ -111,7 +110,9 @@ export default function Book() {
                           className={styles.imgPenjual}
                         />
                         <div className={styles.box}>
-                          <p className={styles.namaPenjual}>{a.penjual_barang.nama}</p>
+                          <p className={styles.namaPenjual}>
+                            {a.penjual_barang.nama}
+                          </p>
                           <p className={styles.kota}>{a.penjual_barang.kota}</p>
                         </div>
                       </div>
@@ -171,15 +172,6 @@ export default function Book() {
               </form>
             </Modal.Body>
             <Modal.Footer className={styles.modalFooter}>
-              {/* <Button
-                variant="primary"
-                type="submit"
-                className={styles.btnSubmit}
-                // onClick={notify}
-                // onChildClose={handleClose}
-              >
-                Save Changes
-              </Button> */}
             </Modal.Footer>
           </Modal>
         </Container>
