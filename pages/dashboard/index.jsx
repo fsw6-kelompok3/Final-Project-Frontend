@@ -111,8 +111,8 @@ export default function Seller() {
                 </a>
               </Link>
             </div>
-            {buku.map((a) => (
-              <ProdukCard buku={a} key={a.id} />
+            {buku.map((buku, i) => (
+              <ProdukCard buku={buku} key={i} />
             ))}
           </div>
         </div>
