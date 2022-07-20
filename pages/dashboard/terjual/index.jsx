@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Form, Nav, Navbar, Row, Col } from "react-bootstrap";
 import { Search } from "react-bootstrap-icons";
 import styles from "./style.module.css";
-import Layout from "../../components/general/Layout";
+import Layout from "../../../components/general/Layout";
 // import ListProduct from "../../components/home/ListProduct";
-import ProdukCard from "../../components/produkcard/ProdukCard";
+import ProdukCard from "../../../components/produkcard/ProdukCard";
 import {
   Box,
   Heart,
@@ -14,7 +14,7 @@ import {
   ChevronRight,
 } from "react-bootstrap-icons";
 import Link from "next/link";
-import axios from '../api/axios'
+import axios from '../../api/axios'
 
 export default function Seller() {
   const [namaPenjual, setNamaPenjual] = useState('');
@@ -25,7 +25,7 @@ export default function Seller() {
   const getData = async () => {
     const token = window.localStorage.getItem('token')
     try {
-      const data = await axios.get('/seller/buku', {
+      const data = await axios.get('/seller/terjual', {
         withCredentials: true,
         headers: {
           Token: token
@@ -100,19 +100,8 @@ export default function Seller() {
             </Link>
           </div>
           <div className={styles.produkContainer}>
-            <div className={styles.cardPlus}>
-              <Link href="/dashboard/book/add">
-                <a>
-                  <p className={styles.txtCardPlus}>
-                    +
-                    <br />
-                    Tambah Produk
-                  </p>
-                </a>
-              </Link>
-            </div>
-            {buku.map((buku, i) => (
-              <ProdukCard buku={buku} key={i} />
+            {buku.map((a) => (
+              <ProdukCard buku={a} key={a.id} />
             ))}
           </div>
         </div>

@@ -86,28 +86,28 @@ const Index = () => {
         <div className={styles.produkContainer}>
           {books
             ? books.map((book, i) => {
-                // return <ProdukCard key={i} props={book}/>
-                return (
-                  <div key={i} className={styles.card}>
-                    <img
-                      src={book.gambar[0]}
-                      alt={book.nama}
-                      className={styles.imgProduk}
-                      onClick={() => router.push(`/book/${book.id}`)} //post id buku ke /book/id
-                    />
-                    <p className={styles.pengarang}>{book.pengarang}</p>
+              // return <ProdukCard key={i} props={book}/>
+              return (
+                <div key={i} className={styles.card}>
+                  <img
+                    src={book.gambar[0]}
+                    alt={book.nama}
+                    className={styles.imgProduk}
+                    onClick={() => router.push(`/book/${book.id}`)} //post id buku ke /book/id
+                  />
+                  <p className={styles.pengarang}>{book.pengarang}</p>
 
-                    <p
-                      className={styles.judul}
-                      onClick={() => router.push(`/book/${book.id}`)}
-                    >
-                      {book.nama}
-                    </p>
+                  <p
+                    className={styles.judul}
+                    onClick={() => router.push(`/book/${book.id}`)}
+                  >
+                    {book.nama}
+                  </p>
 
-                    <p className={styles.harga}>Rp {book.harga}</p>
-                  </div>
-                );
-              })
+                  <p className={styles.harga}>Rp {book.harga}</p>
+                </div>
+              );
+            })
             : "Loading..."}
         </div>
       </Container>

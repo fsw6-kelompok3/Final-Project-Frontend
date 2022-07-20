@@ -84,27 +84,27 @@ const ListProduct = () => {
         <div className={styles.produkContainer}>
           {books
             ? books.map((book, i) => {
-                return (
-                  <div key={i} className={styles.card}>
-                    <Link href={`/book/${book.id}`}>
-                      <a>
-                        <img
-                          src={book.gambar[0]}
-                          alt={book.nama}
-                          className={styles.imgProduk}
-                        />
-                      </a>
-                    </Link>
-                    <p className={styles.pengarang}>{book.pengarang}</p>
-                    <Link href={`/book/${book.id}`}>
-                      <a>
-                        <p className={styles.judul}>{book.nama}</p>
-                      </a>
-                    </Link>
-                    <p className={styles.harga}>Rp {book.harga}</p>
-                  </div>
-                );
-              })
+              return (
+                <div key={i} className={styles.card}>
+                  <Link href={`/book/${book.id}`}>
+                    <a>
+                      <img
+                        src={book.gambar[0]}
+                        alt={book.nama}
+                        className={styles.imgProduk}
+                      />
+                    </a>
+                  </Link>
+                  <p className={styles.pengarang}>{book.pengarang}</p>
+                  <Link href={`/book/${book.id}`}>
+                    <a>
+                      <p className={styles.judul}>{book.nama}</p>
+                    </a>
+                  </Link>
+                  <p className={styles.harga}>Rp {book.harga}</p>
+                </div>
+              );
+            })
             : "Loading..."}
         </div>
       </Container>
