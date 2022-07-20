@@ -165,7 +165,7 @@ export default function AddProduct() {
           <div className={styles.containerForm}>
 
             <div className={styles.boxLeft}>
-              <Link href="/">
+              <Link href="/dashboard">
                 <a>
                   <ArrowLeftShort className={styles.prevBtn} />
                 </a>

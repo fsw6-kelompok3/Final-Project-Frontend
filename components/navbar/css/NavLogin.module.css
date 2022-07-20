@@ -8,13 +8,13 @@
 }
 .container {
   display: flex;
-  flex-dirextion: row;
+  flex-direction: row;
   justify-content: between;
   padding: 20px 0px;
 }
 .box1 {
   display: flex;
-  flex-dirextion: row;
+  flex-direction: row;
 }
 .search {
   display: flex;
@@ -62,53 +62,58 @@
   width: 24px;
   height: 24px;
   color: #8a8a8a;
-  align-item: center;
+  align-items: center;
 }
 
-.btnIcon{
-  width:28px;
-  height:28px;
+.btnIcon {
+  width: 28px;
+  height: 28px;
   margin: auto 0;
-  margin-left:27px;
+  margin-left: 27px;
 }
-.btnIcon:hover{
+.btnIcon:hover {
   color: #008f8c;
 }
-.btnDropdown{
-  background: #fff!important;
-  color: #151515!important;
-  box-shadow: none!important;
-  border-color: #fff!important;
+
+/* css menu icon profile/Person */
+.menuProfil {
+  border-radius: 16px;
+}
+.btnDropdown {
+  background: #fff !important;
+  color: #151515 !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
   padding: 0;
 }
-.btnDropdown:focus{
-  background: #fff!important;
-  color: #008f8c!important;
-  box-shadow: none!important;
-  border-color: #fff!important;
+.btnDropdown:focus {
+  background: #fff !important;
+  color: #008f8c !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
 }
-.btnDropdown:hover{
-  background: #fff!important;
-  color: #008f8c!important;
-  box-shadow: none!important;
-  border-color: #fff!important;
+.btnDropdown:hover {
+  background: #fff !important;
+  color: #008f8c !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
 }
-.btnDropdown.show > .btnDropdown.dropdown-toggle{
-  background: #fff!important;
-  color: #008f8c!important;
-  box-shadow: none!important;
-  border-color: #fff!important;
+.btnDropdown.show > .btnDropdown.dropdown-toggle {
+  background: #fff !important;
+  color: #008f8c !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
 }
 .btnDropdown::after {
-  display:none;
+  display: none;
 }
-.btnIconDropdown{
-  width:30px;
-  height:30px;
-  margin-left:27px;
+.btnIconDropdown {
+  width: 30px;
+  height: 30px;
+  margin-left: 27px;
 }
 
-.brand{
+.brand {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
@@ -116,9 +121,9 @@
   line-height: 28px;
   color: #151515;
   padding: 8px 16px;
-  margin:0px;
+  margin: 0px;
 }
-.itemDropdown{
+.itemDropdown {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
@@ -127,12 +132,12 @@
   color: #151515;
   margin: 4px auto;
 }
-.subIcon{
+.subIcon {
   margin-right: 12px;
   width: 20px;
-  height:20px;
+  height: 20px;
 }
-.itemLogout{
+.itemLogout {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
@@ -141,4 +146,70 @@
   color: #ff0000;
   margin: 4px auto;
   text-align: center;
+}
+
+
+/* css menu icon notif/bell */
+.menuNotif {
+  padding: 12px 12px 0px 12px;
+  border-radius: 16px;
+}
+.boxAttributeProduct {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  padding-top: 16px;
+}
+.imgProduct {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 12px;
+}
+.boxDetailProduct {
+  margin: 0px 0px 16px 16px;
+  width: 100%;
+}
+.boxDetailTop {
+  display: flex;
+  justify-content: space-between;
+}
+.subTitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: #8a8a8a;
+}
+.dateTime {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: #8a8a8a;
+}
+.dot {
+  width: 18px;
+  height: 18px;
+  color: #fa2c5a;
+  font-size: 32px;
+}
+.boxDetailBottom {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+.productName {
+  color: #000000;
+  margin: 0px 0px 4px 0px;
+}
+.price {
+  color: #151515;
+  margin: 0px 0px 4px 0px;
+}
+.offer {
+  color: #151515;
+  margin: 0px 0px 4px 0px;
 }

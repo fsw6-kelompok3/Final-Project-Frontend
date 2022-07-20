@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import styles from "./css/NavLogin.module.css";
 import {
   Button,
+  Badge,
   Container,
   Dropdown,
   Form,
@@ -13,7 +14,7 @@ import {
   Nav,
   Modal,
 } from "react-bootstrap";
-import { Bell, ListUl, Person, Search } from "react-bootstrap-icons";
+import { Bell, Dot, ListUl, Person, Search } from "react-bootstrap-icons";
 import Link from "next/link";
 // import { CheckLg } from "react-bootstrap-icons";
 // import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
@@ -68,16 +69,6 @@ export const NavLogin = () => {
               </a>
             </Link>
 
-            <Dropdown>
-              <Dropdown.Toggle className={styles.btnDropdown}>
-                <Bell className={styles.btnIconDropdown} />
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <p className={styles.brand}>Penawaran Produk</p>
-                <Dropdown.Item href="/offer-info" className={styles.itemLogout}>Offer Info</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
             {/**
             <Link href="/offer-info">
               <a>
@@ -85,12 +76,62 @@ export const NavLogin = () => {
               </a>
             </Link>
             */ }
+            <Dropdown align="end">
+              <Dropdown.Toggle className={styles.btnDropdown}>
+                <Bell className={styles.btnIconDropdown} />
+              </Dropdown.Toggle>
+              <Dropdown.Menu className={styles.menuNotif}>
+                <Dropdown.Item href="/" className={styles.boxAttributeProduct}>
+                  <img
+                    src="/assets/img/bara.jpg"
+                    alt="product"
+                    className={styles.imgProduct}
+                  />
+
+                  <div className={styles.boxDetailProduct}>
+                    <div className={styles.boxDetailTop}>
+                      <p className={styles.subTitle}>Penawaran produk</p>
+                      <p className={styles.dateTime}>
+                        20 Apr, 14:04 <Dot className={styles.dot} />
+                      </p>
+                    </div>
+                    <div className={styles.boxDetailBottom}>
+                      <p className={styles.productName}>Jam Tangan Casio</p>
+                      <p className={styles.price}>Rp 250.000</p>
+                      <p className={styles.offer}>Ditawar Rp 200.000</p>
+                    </div>
+                  </div>
+                </Dropdown.Item>
+
+                <Dropdown.Item href="/" className={styles.boxAttributeProduct}>
+                  <img
+                    src="/assets/img/bara.jpg"
+                    alt="product"
+                    className={styles.imgProduct}
+                  />
+
+                  <div className={styles.boxDetailProduct}>
+                    <div className={styles.boxDetailTop}>
+                      <p className={styles.subTitle}>Berhasil Diterbitkan</p>
+                      <p className={styles.dateTime}>
+                        20 Apr, 14:04 <Dot className={styles.dot} />
+                      </p>
+                    </div>
+                    <div className={styles.boxDetailBottom}>
+                      <p className={styles.productName}>Jam Tangan Casio</p>
+                      <p className={styles.price}>Rp 250.000</p>
+                      {/* <p className={styles.offer}>Ditawar Rp 200.000</p> */}
+                    </div>
+                  </div>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
 
             <Dropdown align="end">
               <Dropdown.Toggle className={styles.btnDropdown}>
                 <Person className={styles.btnIconDropdown} />
               </Dropdown.Toggle>
-              <Dropdown.Menu>
+              <Dropdown.Menu className={styles.menuProfil}>
                 <p className={styles.brand}>SECOND HAND BOOK</p>
                 <Dropdown.Item href="/profile" className={styles.itemDropdown}>
                   <Person className={styles.subIcon} />
