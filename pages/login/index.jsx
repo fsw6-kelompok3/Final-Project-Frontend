@@ -42,8 +42,8 @@ export default function Login() {
       errors.password = "Password is required!";
     } else if (values.password.length < 4) {
       errors.password = "Password must be more than 4 characters!";
-    } else if (values.password.length > 10) {
-      errors.password = "Password can not exceed more than 10 characters!";
+    } else if (values.password.length > 20) {
+      errors.password = "Password can not exceed more than 20 characters!";
     }
 
     return errors;
@@ -63,7 +63,16 @@ export default function Login() {
       })
 
       window.localStorage.setItem('token', data.data['token'])
-      router.push('/dashboard')
+      window.localStorage.setItem('user', JSON.stringify(data.data))
+
+      if (data.data.user.level === 'admin') {
+        router.push('/dashboard')
+        setIsSubmit(true)
+      } else {
+        router.push('/')
+        setIsSubmit(true)
+      }
+
     } catch (error) {
       console.log(error)
     }

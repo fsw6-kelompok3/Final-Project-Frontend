@@ -166,8 +166,8 @@ export default function Register() {
                   variant="primary"
                   type="submit"
                   className={styles.btnSubmit}
-                  //   onClick={notify}
-                  // onChildClose={handleClose}
+                //   onClick={notify}
+                // onChildClose={handleClose}
                 >
                   Daftar
                 </Button>

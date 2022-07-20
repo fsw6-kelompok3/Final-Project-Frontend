@@ -10,17 +10,20 @@ import axios from '../../api/axios'
 
 export default function Book() {
     const router = useRouter()
+    const routes = router.query
 
-    const [buku, setBuku] = useState({})
+    const [buku, setBuku] = useState('')
 
-    const handlePreview = async () => {
-        const data = window.localStorage.getItem('preview')
+    const getData = async () => {
+        const response = await axios.get(`/user/buku/${routes.id}`)
+
+        const data = await response.data;
 
         setBuku(data)
     }
 
     useEffect(() => {
-        handlePreview()
+        getData()
     }, [])
 
     return (
