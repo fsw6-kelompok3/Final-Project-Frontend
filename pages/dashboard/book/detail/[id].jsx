@@ -29,6 +29,15 @@ export default function AddProduct() {
   const routes = router.query
 
   const [buku, setBuku] = useState()
+  const [kategori, setKategori] = useState([])
+
+  const getKategori = async () => {
+    const response = await axios.get('/v1/kategori')
+
+    const data = await response.data
+    // console.log(data)
+    setKategori([data])
+  }
 
   const getData = async () => {
     const response = await axios.get(`/user/buku/${routes.id}`)
@@ -146,6 +155,7 @@ export default function AddProduct() {
     }
     */
     getData()
+    getKategori()
 
     const previewSource = [], fileReaders = [];
     let isCancel = false;
@@ -230,6 +240,8 @@ export default function AddProduct() {
                     onChange={handleChange}
                   >
                     <option value="">Pilih Kategori</option>
+
+
                     <option value="1">Novel</option>
                     <option value="2">Fiksi</option>
                     <option value="3">Horror</option>
