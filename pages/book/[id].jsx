@@ -56,70 +56,70 @@ export default function Book() {
         <Container>
           {books
             ? books.map((a, i) => {
-              return (
-                <div key={i} className={styles.container}>
-                  <div className={styles.sideLeft}>
-                    <Carousel interval={null} className={styles.carousel}>
-                      {a.gambar.map((data, i) => (
-                        <Carousel.Item key={i}>
-                          <img src={data} alt="book" className={styles.img} />
-                        </Carousel.Item>
-                      ))}
-                      {/* {gambarProduk.forEach( */}
+                return (
+                  <div key={i} className={styles.container}>
+                    <div className={styles.sideLeft}>
+                      <Carousel interval={null}className={styles.carousel}>
+                        {a.gambar.map((data, i) => (
+                          <Carousel.Item key={i}>
+                            <img src={data} alt="book" className={styles.img} />
+                          </Carousel.Item>
+                        ))}
+                        {/* {gambarProduk.forEach( */}
 
-                      {/* )} */}
-                      {/* {books.gambar.map((gambar) => {
+                        {/* )} */}
+                        {/* {books.gambar.map((gambar) => {
                           return (
                             <> */}
 
-                      {/* </>
+                        {/* </>
                           );
                         })} */}
-                    </Carousel>
+                      </Carousel>
 
-                    {/* <div>{JSON.stringify(router.query)}</div> */}
-                    <div className={styles.containerDeskripsi}>
-                      <p className={styles.titleDeskripsi}>Deskripsi</p>
-                      <p className={styles.deskripsi}>{a.deskripsi}</p>
+                      {/* <div>{JSON.stringify(router.query)}</div> */}
+                      <div className={styles.containerDeskripsi}>
+                        <p className={styles.titleDeskripsi}>Deskripsi</p>
+                        <p className={styles.deskripsi}>{a.deskripsi}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className={styles.sideRight}>
-                    <div className={styles.nego}>
-                      <p className={styles.judul}>{a.nama}</p>
-                      <p className={styles.pengarang}>{a.pengarang}</p>
-                      <p className={styles.harga}>{a.harga}</p>
+                    <div className={styles.sideRight}>
+                      <div className={styles.nego}>
+                        <p className={styles.judul}>{a.nama}</p>
+                        <p className={styles.pengarang}>{a.pengarang}</p>
+                        <p className={styles.harga}>{a.harga}</p>
 
-                      <Link href="">
-                        <a>
-                          <Button
-                            className={styles.btnNego}
-                            onClick={handleShow}
-                          >
-                            <p className={styles.textBtn}>
-                              Saya tertarik dan ingin nego
-                            </p>
-                          </Button>
-                        </a>
-                      </Link>
-                    </div>
+                        <Link href="">
+                          <a>
+                            <Button
+                              className={styles.btnNego}
+                              onClick={handleShow}
+                            >
+                              <p className={styles.textBtn}>
+                                Saya tertarik dan ingin nego
+                              </p>
+                            </Button>
+                          </a>
+                        </Link>
+                      </div>
 
-                    <div className={styles.identitasPenjual}>
-                      <img
-                        src={a.penjual_barang.foto}
-                        alt="penjual"
-                        className={styles.imgPenjual}
-                      />
-                      <div className={styles.box}>
-                        <p className={styles.namaPenjual}>
-                          {a.penjual_barang.nama}
-                        </p>
-                        <p className={styles.kota}>{a.penjual_barang.kota}</p>
+                      <div className={styles.identitasPenjual}>
+                        <img
+                          src={a.penjual_barang.foto}
+                          alt="penjual"
+                          className={styles.imgPenjual}
+                        />
+                        <div className={styles.box}>
+                          <p className={styles.namaPenjual}>
+                            {a.penjual_barang.nama}
+                          </p>
+                          <p className={styles.kota}>{a.penjual_barang.kota}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })
+                );
+              })
             : "Loading..."}
 
           <Modal show={show} onHide={handleClose} centered>
@@ -164,8 +164,8 @@ export default function Book() {
                   variant="primary"
                   type="submit"
                   className={styles.btnSubmit}
-                //   onClick={notify}
-                // onChildClose={handleClose}
+                  //   onClick={notify}
+                  // onChildClose={handleClose}
                 >
                   Save Changes
                 </Button>

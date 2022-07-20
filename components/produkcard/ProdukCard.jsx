@@ -2,24 +2,28 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./css/ProdukCard.module.css";
-import { useRouter } from "next/router";
 
 export default function ProdukCard(props) {
-  const router = useRouter()
-  const { buku, i } = props;
-
+  const { buku } = props;
+  
   return (
     <>
-      <div key={i} className={styles.card} onClick={() => router.push(`/dashboard/book/detail/${buku.id}`)}>
-        <img
-          src={buku.gambar[0]}
-          alt={buku.nama}
-          className={styles.imgProduk}
-        />
+      <div className={styles.card}>
+        <Link href={buku.link}>
+          <a>
+            <img
+              src={buku.image}
+              alt={buku.judul}
+              className={styles.imgProduk}
+            />
+          </a>
+        </Link>
         <p className={styles.pengarang}>{buku.pengarang}</p>
-
-        <p className={styles.judul}>{buku.nama}</p>
-
+        <Link href={buku.link}>
+          <a>
+            <p className={styles.judul}>{buku.judul}</p>
+          </a>
+        </Link>
         <p className={styles.harga}>Rp {buku.harga}</p>
       </div>
     </>
