@@ -5,23 +5,23 @@ import styles from "./css/ProdukCard.module.css";
 
 export default function ProdukCard(props) {
   const { buku } = props;
-  
+
   return (
     <>
       <div className={styles.card}>
-        <Link href={buku.link}>
+        <Link href="/book">
           <a>
             <img
-              src={buku.image}
-              alt={buku.judul}
+              src={buku.gambar[0]}
+              alt={buku.nama}
               className={styles.imgProduk}
             />
           </a>
         </Link>
         <p className={styles.pengarang}>{buku.pengarang}</p>
-        <Link href={buku.link}>
+        <Link href="/">
           <a>
-            <p className={styles.judul}>{buku.judul}</p>
+            <p className={styles.judul}>{buku.nama}</p>
           </a>
         </Link>
         <p className={styles.harga}>Rp {buku.harga}</p>

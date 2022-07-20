@@ -4,41 +4,131 @@ import Layout from "../../../../components/general/Layout";
 import { ArrowLeftShort } from "react-bootstrap-icons";
 import Link from "next/link";
 import styles from "./AddProduct.module.css";
+import axios from '../../../api/axios';
+import { useRouter } from "next/router";
 
 export default function AddProduct() {
   const initialValues = {
     nama: "",
-    harga: "",
-    kategori: "",
     deskripsi: "",
-    foto: "",
+    gambar: [],
+    harga: "",
+    pengarang: "",
+    lokasi: "",
+    tahun_terbit: "",
+    kategori_id: "",
   };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [selected, setSelected] = useState(null);
 
-  // console.log(selected);
+  const [fileInputState, setFileInputState] = useState([]);
+  const [previewSource, setPreviewSource] = useState([]);
+  const router = useRouter()
+
+  const handleAddProduct = async () => {
+    const token = window.localStorage.getItem('token')
+
+    try {
+      const formData = new FormData()
+
+      formData.append('nama', formValues.nama)
+      formData.append('deskripsi', formValues.deskripsi)
+      /*
+      for (let i = 0; i < multipleImages.length; i++) {
+        formData.append('gambar[]', multipleImages[i])
+      }
+      */
+      Object.values(fileInputState).forEach((file) => {
+        formData.append('gambar', file);
+      });
+      formData.append('harga', formValues.harga)
+      formData.append('pengarang', formValues.pengarang)
+      formData.append('lokasi', formValues.lokasi)
+      formData.append('tahun_terbit', formValues.tahun_terbit)
+      formData.append('kategori_id', formValues.kategori_id)
+
+      console.log(...formData)
+
+      await axios.post('/seller/buku', formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Token: token
+        }
+      })
+
+      router.push('/dashboard')
+
+      console.log('This is a successful request, congratulations')
+    } catch (error) {
+      console.log('Unsuccessful post request')
+    }
+  }
 
   const handleChange = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
+    // console.log(formValues);
   };
+
+  const handleFileInputChange = (e) => {
+    const { files } = e.target;
+    const validImageFiles = []
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      validImageFiles.push(file);
+    }
+    if (validImageFiles.length) {
+      setFileInputState(validImageFiles);
+      return;
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
+    handleAddProduct()
     setIsSubmit(true);
   };
 
   useEffect(() => {
+    /*
     console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
     }
-  }, [formErrors]);
+    */
+
+    const previewSource = [], fileReaders = [];
+    let isCancel = false;
+
+    if (fileInputState.length) {
+      fileInputState.forEach((file) => {
+        const fileReader = new FileReader();
+        fileReaders.push(fileReader);
+        fileReader.onload = (e) => {
+          const { result } = e.target;
+          if (result) {
+            previewSource.push(result);
+          }
+          if (previewSource.length === fileInputState.length && !isCancel) {
+            setPreviewSource(previewSource);
+          }
+        };
+        fileReader.readAsDataURL(file);
+      });
+    }
+    return () => {
+      isCancel = true;
+      fileReaders.forEach((fileReader) => {
+        if (fileReader.readyState === 1) {
+          fileReader.abort();
+        }
+      });
+    };
+  }, [fileInputState]);
 
   const validate = (values) => {
     const errors = {};
@@ -49,14 +139,20 @@ export default function AddProduct() {
     if (!values.harga) {
       errors.harga = "Price is required!";
     }
-    if (!values.kategori) {
-      errors.kategori = "Category is required!";
+    if (!values.kategori_id) {
+      errors.kategori_id = "Category is required!";
     }
     if (!values.deskripsi) {
       errors.deskripsi = "Description is required!";
     }
-    if (!values.foto) {
-      errors.foto = "Picture is required!";
+    if (!values.pengarang) {
+      errors.pengarang = "Author is required!";
+    }
+    if (!values.lokasi) {
+      errors.lokasi = "Location is required!";
+    }
+    if (!values.tahun_terbit) {
+      errors.tahun_terbit = "Year is required!";
     }
 
     return errors;
@@ -67,6 +163,7 @@ export default function AddProduct() {
       <Layout>
         <Container className={styles.container}>
           <div className={styles.containerForm}>
+
             <div className={styles.boxLeft}>
               <Link href="/">
                 <a>
@@ -74,6 +171,7 @@ export default function AddProduct() {
                 </a>
               </Link>
             </div>
+
             <div className={styles.boxRight}>
               <form onSubmit={handleSubmit}>
                 <div className={styles.boxInput}>
@@ -108,19 +206,61 @@ export default function AddProduct() {
                   <p className={styles.label}>Kategori</p>
                   <select
                     required
-                    name="kategori"
+                    name="kategori_id"
                     className={styles.input}
-                    value={formValues.kategori}
+                    value={formValues.kategori_id}
                     onChange={handleChange}
                   >
                     <option value="">Pilih Kategori</option>
-                    <option value="novel">Novel</option>
-                    <option value="fiksi">Fiksi</option>
-                    <option value="horror">Horror</option>
-                    <option value="teknologi">Teknologi</option>
-                    <option value="ensiklopedia">Ensiklopedia</option>
+                    <option value="1">Novel</option>
+                    <option value="2">Fiksi</option>
+                    <option value="3">Horror</option>
+                    <option value="4">Teknologi</option>
+                    <option value="5">Ensiklopedia</option>
                   </select>
-                  <p className={styles.alert}>{formErrors.kategori}</p>
+                  <p className={styles.alert}>{formErrors.kategori_id}</p>
+                </div>
+
+                <div className={styles.boxInput}>
+                  <p className={styles.label}>Pengarang</p>
+                  <input
+                    required
+                    name="pengarang"
+                    type="text"
+                    placeholder="Pengarang"
+                    className={styles.input}
+                    value={formValues.pengarang}
+                    onChange={handleChange}
+                  />
+                  <p className={styles.alert}>{formErrors.pengarang}</p>
+                </div>
+
+                <div className={styles.boxInput}>
+                  <p className={styles.label}>Lokasi</p>
+                  <input
+                    required
+                    name="lokasi"
+                    type="text"
+                    placeholder="Lokasi"
+                    className={styles.input}
+                    value={formValues.lokasi}
+                    onChange={handleChange}
+                  />
+                  <p className={styles.alert}>{formErrors.lokasi}</p>
+                </div>
+
+                <div className={styles.boxInput}>
+                  <p className={styles.label}>Tahun Terbit</p>
+                  <input
+                    required
+                    name="tahun_terbit"
+                    type="number"
+                    placeholder="Tahun Terbit"
+                    className={styles.input}
+                    value={formValues.tahun_terbit}
+                    onChange={handleChange}
+                  />
+                  <p className={styles.alert}>{formErrors.tahun_terbit}</p>
                 </div>
 
                 <div className={styles.boxInput}>
@@ -146,10 +286,10 @@ export default function AddProduct() {
                     type="file"
                     accept="image/*"
                     className={styles.input}
-                    value={formValues.foto}
-                    onChange={handleChange}
+                    // value={multipleImages}
+                    onChange={handleFileInputChange}
                   />
-                  <p className={styles.alert}>{formErrors.foto}</p>
+                  <p className={styles.alert}></p>
                 </div>
 
                 <div className={styles.boxBtn}>
@@ -161,8 +301,8 @@ export default function AddProduct() {
                     variant="primary"
                     type="submit"
                     className={styles.btnSubmit}
-                    //   onClick={notify}
-                    // onChildClose={handleClose}
+                  //   onClick={notify}
+                  // onChildClose={handleClose}
                   >
                     Terbitkan
                   </Button>

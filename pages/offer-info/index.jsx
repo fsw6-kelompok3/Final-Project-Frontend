@@ -64,9 +64,9 @@ export default function OfferInfo(props) {
 
   const [formValues, setFormValues] = useState({ transaksi: "" });
 
-  const [gambarPenjual, setGambarPenjual] = useState('');
-  const [namaPenjual, setNamaPenjual] = useState('');
-  const [kotaPenjual, setKotaPenjual] = useState('');
+  const [gambarPembeli, setGambarPembeli] = useState('');
+  const [namaPembeli, setNamaPembeli] = useState('');
+  const [kotaPembeli, setKotaPembeli] = useState('');
   const router = useRouter();
 
   const getData = async () => {
@@ -74,30 +74,32 @@ export default function OfferInfo(props) {
     const user = window.localStorage.getItem('user')
 
     try {
+      const data = await axios.get('/transaksi/seller', {
+        withCredentials: true,
+        headers: {
+          Token: token
+        }
+      });
+
       if (JSON.parse(user).user.level === 'admin') {
-        const data = await axios.get('/transaksi/seller', {
-          withCredentials: true,
-          headers: {
-            Token: token
-          }
-        });
-        console.log('This means you are authorized')
-        console.log(data)
-        setNamaPenjual(JSON.parse(user).user.nama)
-        setKotaPenjual(JSON.parse(user).user.kota)
-        setGambarPenjual(JSON.parse(user).user.foto)
+        console.log('This means you are authorized, but you are a seller and not a buyer')
+        // console.log(data)
+        setNamaPembeli(JSON.parse(user).user.nama)
+        setKotaPembeli(JSON.parse(user).user.kota)
+        setGambarPembeli(JSON.parse(user).user.foto)
       } else if (JSON.parse(user).user.level === 'user') {
-        console.log('Access not authorized')
+        console.log('Access not authorized because role is user')
         router.push('/')
       } else {
+        console.log('You are not logged in')
         router.push('/')
       }
     } catch (error) {
-      console.log(error.response)
+      console.log(error)
     }
   }
 
-  // Update inputs value
+  // update inputs value
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -116,7 +118,7 @@ export default function OfferInfo(props) {
         }
       })
     } catch (error) {
-      console.log(error.response)
+      console.log(error)
     }
   }
 
@@ -129,7 +131,7 @@ export default function OfferInfo(props) {
         }
       })
     } catch (error) {
-      console.log(error.response)
+      console.log(error)
     }
   }
 
@@ -164,13 +166,13 @@ export default function OfferInfo(props) {
               <div className={styles.containerPenawaran}>
                 <div className={styles.boxContainerTop}>
                   <img
-                    src={gambarPenjual}
+                    src={gambarPembeli}
                     alt="user"
                     className={styles.imgPembeli}
                   />
                   <div className={styles.boxInner}>
-                    <p className={styles.username}>{namaPenjual}</p>
-                    <p className={styles.address}>{kotaPenjual}</p>
+                    <p className={styles.username}>{namaPembeli}</p>
+                    <p className={styles.address}>{kotaPembeli}</p>
                   </div>
                 </div>
 

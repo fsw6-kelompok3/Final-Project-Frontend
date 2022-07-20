@@ -85,7 +85,7 @@ export default function Profile() {
         <Container className={styles.container}>
           <div className={styles.containerForm}>
             <div className={styles.boxLeft}>
-              <Link href="/">
+              <Link href="/dashboard">
                 <a>
                   <ArrowLeftShort className={styles.prevBtn} />
                 </a>
@@ -204,8 +204,8 @@ export default function Profile() {
                       avatar != undefined
                         ? avatar
                         : formValues.foto_profil
-                        ? formValues.foto_profil
-                        : "/assets/img/pict.png"
+                          ? formValues.foto_profil
+                          : "/assets/img/pict.png"
                     }
                     alt="picture"
                     className={styles.pictureUser}
@@ -223,12 +223,12 @@ export default function Profile() {
                     className={styles.input}
                     value={formValues.foto_profil}
                     onChange={avatarOnChange}
-                    // onChange={(e) =>
-                    //   setFormValues({
-                    //     ...formValues,
-                    //     foto_profil: e.target.files[0],
-                    //   })
-                    // }
+                  // onChange={(e) =>
+                  //   setFormValues({
+                  //     ...formValues,
+                  //     foto_profil: e.target.files[0],
+                  //   })
+                  // }
                   />
                   <p className={styles.alert}>{formErrors.foto_profil}</p>
                 </div>
@@ -314,8 +314,8 @@ export default function Profile() {
                     variant="primary"
                     type="submit"
                     className={styles.btnSubmit}
-                    //   onClick={notify}
-                    // onChildClose={handleClose}
+                  //   onClick={notify}
+                  // onChildClose={handleClose}
                   >
                     Terbitkan
                   </Button>
