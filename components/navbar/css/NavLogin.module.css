@@ -8,13 +8,13 @@
 }
 .container {
   display: flex;
-  flex-direction: row;
+  flex-dirextion: row;
   justify-content: between;
   padding: 20px 0px;
 }
 .box1 {
   display: flex;
-  flex-direction: row;
+  flex-dirextion: row;
 }
 .search {
   display: flex;
@@ -62,7 +62,7 @@
   width: 24px;
   height: 24px;
   color: #8a8a8a;
-  align-items: center;
+  align-item: center;
 }
 
 .btnIcon {
