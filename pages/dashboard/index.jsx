@@ -101,7 +101,7 @@ export default function Seller() {
           </div>
           <div className={styles.produkContainer}>
             <div className={styles.cardPlus}>
-              <Link href="/dashboard/book/detail">
+              <Link href="/dashboard/book/add">
                 <a>
                   <p className={styles.txtCardPlus}>
                     +

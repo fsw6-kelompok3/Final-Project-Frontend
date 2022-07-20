@@ -93,43 +93,6 @@ export default function AddProduct() {
     setIsSubmit(true);
   };
 
-  useEffect(() => {
-    /*
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-    */
-
-    const previewSource = [], fileReaders = [];
-    let isCancel = false;
-
-    if (fileInputState.length) {
-      fileInputState.forEach((file) => {
-        const fileReader = new FileReader();
-        fileReaders.push(fileReader);
-        fileReader.onload = (e) => {
-          const { result } = e.target;
-          if (result) {
-            previewSource.push(result);
-          }
-          if (previewSource.length === fileInputState.length && !isCancel) {
-            setPreviewSource(previewSource);
-          }
-        };
-        fileReader.readAsDataURL(file);
-      });
-    }
-    return () => {
-      isCancel = true;
-      fileReaders.forEach((fileReader) => {
-        if (fileReader.readyState === 1) {
-          fileReader.abort();
-        }
-      });
-    };
-  }, [fileInputState]);
-
   const validate = (values) => {
     const errors = {};
 
@@ -157,6 +120,57 @@ export default function AddProduct() {
 
     return errors;
   };
+
+  const handlePreview = () => {
+    const formData = new FormData()
+
+    formData.append('nama', formValues.nama)
+    formData.append('deskripsi', formValues.deskripsi)
+    Object.values(fileInputState).forEach((file) => {
+      formData.append('gambar', file);
+    });
+    formData.append('harga', formValues.harga)
+    formData.append('pengarang', formValues.pengarang)
+    formData.append('lokasi', formValues.lokasi)
+    formData.append('tahun_terbit', formValues.tahun_terbit)
+    formData.append('kategori_id', formValues.kategori_id)
+
+    // console.log(...formData)
+
+    window.localStorage.setItem('preview', formData)
+    router.push('/dashboard/book')
+  };
+
+  useEffect(() => {
+    const previewSource = [], fileReaders = [];
+    let isCancel = false;
+
+    if (fileInputState.length) {
+      fileInputState.forEach((file) => {
+        const fileReader = new FileReader();
+        fileReaders.push(fileReader);
+        fileReader.onload = (e) => {
+          const { result } = e.target;
+          if (result) {
+            previewSource.push(result);
+          }
+          if (previewSource.length === fileInputState.length && !isCancel) {
+            setPreviewSource(previewSource);
+          }
+        };
+        fileReader.readAsDataURL(file);
+      });
+    }
+
+    return () => {
+      isCancel = true;
+      fileReaders.forEach((fileReader) => {
+        if (fileReader.readyState === 1) {
+          fileReader.abort();
+        }
+      });
+    };
+  }, [fileInputState]);
 
   return (
     <>
@@ -293,7 +307,10 @@ export default function AddProduct() {
                 </div>
 
                 <div className={styles.boxBtn}>
-                  <Button href="/dashboard/book" className={styles.btnPreview}>
+                  <Button
+                    className={styles.btnPreview}
+                    onClick={handlePreview}
+                  >
                     Preview
                   </Button>
 
@@ -311,7 +328,7 @@ export default function AddProduct() {
             </div>
           </div>
         </Container>
-      </Layout>
+      </Layout >
     </>
   );
 }
