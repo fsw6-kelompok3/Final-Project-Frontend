@@ -1,0 +1,153 @@
+.container {
+  padding-top: 150px;
+  display: flex;
+}
+.sideLeft {
+  max-width: 60%;
+  padding-right:32px;
+}
+.carousel {
+  width: 600px;
+  height: 436px;
+  margin: 0 auto;
+}
+.img {
+  width: 100%;
+  max-height: 436px;
+  object-fit: contain;
+  /* object-fit: cover; */
+  border-radius: 16px;
+  /* background: #eee; */
+}
+.containerDeskripsi {
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 24px;
+}
+.titleDeskripsi {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+.deskripsi {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #8a8a8a;
+}
+.sideRight {
+  padding-left: 16px;
+  width: 40%;
+}
+.addProduk {
+  width: 336px;
+  height: 266px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 24px 16px;
+}
+.judul {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+}
+.pengarang {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #8a8a8a;
+}
+.harga {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+}
+.btnTerbitkan {
+  align-items: center;
+  padding: 12px 24px;
+  width: 100%;
+  height: 48px;
+  background: #008f8c;
+  border-radius: 16px;
+  border: 2px solid #008f8c;
+}
+.btnTerbitkan:hover {
+  background: #eeeeee;
+  color: #008f8c;
+  border: 2px solid #eeeeee;
+  /* background-color: white;
+  color: #008f8c; */
+}
+.btnEdit {
+  margin-top: 14px;
+  align-items: center;
+  padding: 12px 24px;
+  width: 100%;
+  height: 48px;
+  border-radius: 16px;
+  border: 2px solid #008f8c;
+  background-color: white;
+  color: #008f8c;
+}
+.btnEdit:hover {
+  background: #008f8c;
+  color: #fff;
+  border: 2px solid #008f8c;
+}
+.identitasPenjual {
+  padding: 16px 0px 16px 16px;
+  display: flex;
+  width: 336px;
+  height: 80px;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  margin-top: 24px;
+}
+.imgPenjual {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+}
+.namaPenjual {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+.kota {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: #8a8a8a;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: #eee;
+  border-radius: 25%;
+}

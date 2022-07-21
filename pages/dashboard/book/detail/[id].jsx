@@ -35,8 +35,8 @@ export default function AddProduct() {
     const response = await axios.get('/v1/kategori')
 
     const data = await response.data
-    // console.log(data)
-    setKategori([data])
+    // console.log(data.data)
+    setKategori(data.data)
   }
 
   const getData = async () => {
@@ -45,11 +45,9 @@ export default function AddProduct() {
     const data = await response.data;
 
     setBuku(data[0])
-
     setFormValues({
       nama: data[0].nama,
       deskripsi: data[0].deskripsi,
-      gambar: data[0].gambar,
       harga: data[0].harga,
       pengarang: data[0].pengarang,
       lokasi: data[0].lokasi,
@@ -58,7 +56,7 @@ export default function AddProduct() {
     })
   }
 
-  const handleEditProduct = () => {
+  const handleEditProduct = async () => {
     const token = window.localStorage.getItem('token')
 
     try {
@@ -77,7 +75,7 @@ export default function AddProduct() {
 
       console.log(...formData)
 
-      axios.put(`/seller/buku/${routes.id}`, formData, {
+      const response = await axios.post(`/seller/buku/${routes.id}`, formData, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
@@ -86,7 +84,6 @@ export default function AddProduct() {
       })
 
       router.push('/dashboard')
-
       console.log('This is a successful request, congratulations')
     } catch (error) {
       console.log('Unsuccessful put request')
@@ -184,7 +181,7 @@ export default function AddProduct() {
         }
       });
     };
-  }, [fileInputState]);
+  }, []);
 
   return (
     <>
@@ -240,13 +237,12 @@ export default function AddProduct() {
                     onChange={handleChange}
                   >
                     <option value="">Pilih Kategori</option>
-
-
-                    <option value="1">Novel</option>
-                    <option value="2">Fiksi</option>
-                    <option value="3">Horror</option>
-                    <option value="4">Teknologi</option>
-                    <option value="5">Ensiklopedia</option>
+                    {kategori.map(kategori =>
+                      <option
+                        key={kategori.id}
+                        value={kategori.id}
+                      >{kategori.jenis_buku}
+                      </option>)}
                   </select>
                   <p className={styles.alert}>{formErrors.kategori_id}</p>
                 </div>
