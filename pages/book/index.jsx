@@ -11,9 +11,28 @@ const Index = () => {
   // const books = data.data;
   const router = useRouter();
   const [books, setBooks] = useState([]);
+  const [kategori, setKategori] = useState([])
+  const [kategoriValue, setKategoriValue] = useState('')
 
   // console.log("jsjjsjs", books);
+  const getKategori = async () => {
+    const response = await axios.get('https://secondhand-6-3-staging.herokuapp.com/v1/kategori')
+
+    const data = await response.data
+    // console.log(data.data)
+    setKategori(data.data)
+  }
+
+  const handleFilterKategori = async () => {
+    const response = await axios.get('https://secondhand-6-3-staging.herokuapp.com/user/buku/kategori')
+
+    const data = await response.data
+    // console.log(data.data)
+    console.log(data)
+  }
+
   useEffect(() => {
+    getKategori()
     const postData = async () => {
       const response = await axios.get(
         `https://secondhand-6-3-staging.herokuapp.com/user/buku`
@@ -34,54 +53,17 @@ const Index = () => {
       <Container>
         <h1 className={styles.title}>Telusuri Kategori</h1>
         <div className={styles.btnFilterContainer}>
-          <Link href="/">
-            <a>
-              <Button className={styles.btnFilterActive} type="search">
+          {kategori.map(kategori =>
+            <a key={kategori.id}>
+              <Button
+                className={styles.btnFilterActive}
+                type="search"
+                onClick={handleFilterKategori}>
                 <Search className={styles.icon} />
-                <p className={styles.text}>Semua</p>
+                <p className={styles.text}>{kategori.jenis_buku}</p>
               </Button>
             </a>
-          </Link>
-          <Link href="/">
-            <a>
-              <Button className={styles.btnFilterActive} type="search">
-                <Search className={styles.icon} />
-                <p className={styles.text}>Novel</p>
-              </Button>
-            </a>
-          </Link>
-          <Link href="/">
-            <a>
-              <Button className={styles.btnFilterActive} type="search">
-                <Search className={styles.icon} />
-                <p className={styles.text}>Fiksi</p>
-              </Button>
-            </a>
-          </Link>
-          <Link href="/">
-            <a>
-              <Button className={styles.btnFilterActive} type="search">
-                <Search className={styles.icon} />
-                <p className={styles.text}>Horror</p>
-              </Button>
-            </a>
-          </Link>
-          <Link href="/">
-            <a>
-              <Button className={styles.btnFilterActive} type="search">
-                <Search className={styles.icon} />
-                <p className={styles.text}>Teknologi</p>
-              </Button>
-            </a>
-          </Link>
-          <Link href="/">
-            <a>
-              <Button className={styles.btnFilterActive} type="search">
-                <Search className={styles.icon} />
-                <p className={styles.text}>Ensiklopedia</p>
-              </Button>
-            </a>
-          </Link>
+          )}
         </div>
         <div className={styles.produkContainer}>
           {books

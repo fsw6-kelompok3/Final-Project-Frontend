@@ -53,8 +53,9 @@ export default function Book() {
                                         <div className={styles.addProduk}>
                                             <p className={styles.judul}>{a.nama}</p>
                                             <p className={styles.pengarang}>{a.pengarang}</p>
-                                            <p className={styles.harga}>{a.harga}</p>
+                                            <p className={styles.harga}>Rp {a.harga}</p>
 
+                                            {/**
                                             <Link href="/dashboard">
                                                 <a>
                                                     <Button className={styles.btnTerbitkan} type="search">
@@ -62,10 +63,20 @@ export default function Book() {
                                                     </Button>
                                                 </a>
                                             </Link>
-                                            <Link href="/dashboard/book/detail">
+                                            */}
+
+                                            <a>
+                                                <Button
+                                                    className={styles.btnTerbitkan} type="search"
+                                                    onClick={() => router.push(`/dashboard/book/detail/${routes.id}`)}>
+                                                    <p className={styles.text}>Edit</p>
+                                                </Button>
+                                            </a>
+
+                                            <Link href="/dashboard">
                                                 <a>
                                                     <Button className={styles.btnEdit} type="search">
-                                                        <p className={styles.text}>Edit</p>
+                                                        <p className={styles.text}>Return</p>
                                                     </Button>
                                                 </a>
                                             </Link>

@@ -10,7 +10,7 @@ export default function ProdukCard(props) {
 
   return (
     <>
-      <div key={i} className={styles.card} onClick={() => router.push(`/dashboard/book/detail/${buku.id}`)}>
+      <div key={i} className={styles.card} onClick={() => router.push(`/dashboard/book/${buku.id}`)}>
         <img
           src={buku.gambar[0]}
           alt={buku.nama}

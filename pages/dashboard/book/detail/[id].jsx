@@ -90,6 +90,24 @@ export default function AddProduct() {
     }
   }
 
+  const handleDeleteProduct = async () => {
+    const token = window.localStorage.getItem('token')
+
+    try {
+      const response = await axios.delete(`/seller/buku/${routes.id}`, {
+        withCredentials: true,
+        headers: {
+          Token: token
+        }
+      })
+
+      console.log('This is a successful request, congratulations')
+      router.push('/dashboard')
+    } catch (error) {
+      console.log('Unsuccessful put request')
+    }
+  }
+
   const handleChange = (e) => {
     // console.log(e.target);
     const { name, value } = e.target;
@@ -190,11 +208,13 @@ export default function AddProduct() {
           <div className={styles.containerForm}>
 
             <div className={styles.boxLeft}>
-              <Link href="/dashboard">
-                <a>
-                  <ArrowLeftShort className={styles.prevBtn} />
-                </a>
-              </Link>
+
+              <a>
+                <ArrowLeftShort
+                  className={styles.prevBtn}
+                  onClick={() => router.push(`/dashboard/book/${routes.id}`)} />
+              </a>
+
             </div>
 
             <div className={styles.boxRight}>
@@ -321,8 +341,9 @@ export default function AddProduct() {
                 <div className={styles.boxBtn}>
                   <Button
                     className={styles.btnPreview}
-                    onClick={() => router.push(`/dashboard/book/detail/${buku.id}`)}>
-                    Preview
+                    onClick={handleDeleteProduct}
+                  >
+                    Delete
                   </Button>
 
                   <Button
@@ -332,7 +353,7 @@ export default function AddProduct() {
                   //   onClick={notify}
                   // onChildClose={handleClose}
                   >
-                    Terbitkan
+                    Update
                   </Button>
                 </div>
               </form>

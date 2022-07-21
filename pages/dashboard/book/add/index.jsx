@@ -33,11 +33,15 @@ export default function AddProduct() {
   const router = useRouter()
 
   const getKategori = async () => {
-    const response = await axios.get('/v1/kategori')
+    try {
+      const response = await axios.get('/v1/kategori')
 
-    const data = await response.data
-    // console.log(data.data)
-    setKategori(data.data)
+      const data = await response.data
+      console.log(data.data)
+      setKategori(data.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleAddProduct = async () => {
@@ -332,12 +336,14 @@ export default function AddProduct() {
                     </div>
 
                     <div className={styles.boxBtn}>
+                      {/**
                       <Button
                         className={styles.btnPreview}
                         onClick={handlePreview}
                       >
                         Preview
                       </Button>
+                        */}
 
                       <Button
                         variant="primary"
@@ -353,47 +359,7 @@ export default function AddProduct() {
                 </div>
               </div>
               :
-              buku.map((a) => {
-                return (
-                  <div key={a.id} className={styles2.container}>
-                    <div className={styles2.sideLeft}>
-
-                      <Carousel interval={null} className={styles2.carousel}>
-                      </Carousel>
-
-                      <div className={styles2.containerDeskripsi}>
-                        <p className={styles2.titleDeskripsi}>Deskripsi</p>
-                        <p className={styles2.deskripsi}>{a.id}</p>
-                      </div>
-                    </div>
-                    <div className={styles2.sideRight}>
-                      <div className={styles2.addProduk}>
-                        <p className={styles2.judul}>judul</p>
-                        <p className={styles2.pengarang}>pengarang</p>
-                        <p className={styles2.harga}>harga</p>
-
-                        <Link href="/dashboard">
-                          <a>
-                            <Button className={styles2.btnTerbitkan} type="search">
-                              <p className={styles2.text}>Terbitkan</p>
-                            </Button>
-                          </a>
-                        </Link>
-                        <Link href="/dashboard/book/detail">
-                          <a>
-                            <Button className={styles2.btnEdit} type="search">
-                              <p className={styles2.text}>Edit</p>
-                            </Button>
-                          </a>
-                        </Link>
-                      </div>
-
-                      <div className={styles2.identitasPenjual}>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })
+              "Loading..."
           }
         </Container>
       </Layout >

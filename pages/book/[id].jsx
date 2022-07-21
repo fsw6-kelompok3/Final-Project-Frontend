@@ -22,10 +22,34 @@ export default function Book() {
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isShown, setIsShown] = useState(false)
 
   useEffect(() => {
     postData()
+    getInfo()
   }, []);
+
+  const getInfo = async () => {
+    const token = await window.localStorage.getItem('token')
+    const user = await window.localStorage.getItem('user')
+
+    if (token) {
+      console.log('This means you have a token!')
+      if (JSON.parse(user).user.level === 'admin') {
+        console.log('This means you are authorized, you are an admin');
+        setIsShown(false)
+      } else if (JSON.parse(user).user.level === 'user') {
+        console.log('This means you are authorized, you are a user');
+        setIsShown(true)
+      } else {
+        console.log('You are neither. What are you?')
+        setIsShown(false)
+      }
+    } else {
+      console.log('Your token is not here. Login first')
+      setIsShown(false)
+    }
+  }
 
   const postData = async () => {
     const response = await axios.get(
@@ -88,19 +112,21 @@ export default function Book() {
                     <div className={styles.nego}>
                       <p className={styles.judul}>{a.nama}</p>
                       <p className={styles.pengarang}>{a.pengarang}</p>
-                      <p className={styles.harga}>{a.harga}</p>
-                      <a>
-                        <Button
-                          className={styles.btnNego}
-                          onClick={handleShow}
-                        >
-                          <p className={styles.textBtn}>
-                            Saya tertarik dan ingin nego
-                          </p>
-                        </Button>
-                      </a>
+                      <p className={styles.harga}>Rp {a.harga}</p>
+                      {isShown == true
+                        ?
+                        <a>
+                          <Button
+                            className={styles.btnNego}
+                            onClick={handleShow}
+                          >
+                            <p className={styles.textBtn}>
+                              Saya tertarik dan ingin nego
+                            </p>
+                          </Button>
+                        </a>
+                        : ""}
                     </div>
-
                     <div className={styles.identitasPenjual}>
                       <img
                         src={a.penjual_barang.foto}

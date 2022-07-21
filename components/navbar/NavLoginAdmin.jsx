@@ -148,7 +148,7 @@ export const NavLoginAdmin = () => {
                 <p className={styles.brand}>SECOND HAND BOOK</p>
                 <Dropdown.Item href="/profile" className={styles.itemDropdown}>
                   <Person className={styles.subIcon} />
-                  Profil
+                  Edit Profil
                 </Dropdown.Item>
                 <Dropdown.Item className={styles.itemLogout} onClick={logout}>Logout</Dropdown.Item>
               </Dropdown.Menu>

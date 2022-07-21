@@ -111,9 +111,11 @@ export default function Seller() {
                 </a>
               </Link>
             </div>
-            {buku.map((buku, i) => (
-              <ProdukCard buku={buku} key={i} />
-            ))}
+            {buku
+              ? buku.map((buku, i) => (
+                <ProdukCard buku={buku} key={i} />
+              ))
+              : "It's empty..."}
           </div>
         </div>
       </Container>

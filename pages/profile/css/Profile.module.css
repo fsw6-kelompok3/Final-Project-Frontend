@@ -12,6 +12,7 @@
 .prevBtn {
   width: 28px;
   height: 28px;
+  cursor: pointer;
 }
 .prevBtn:hover {
   color: #008f8c;
