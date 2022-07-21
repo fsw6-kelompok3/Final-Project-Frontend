@@ -24,18 +24,19 @@ export default function Book() {
   const [isSubmit, setIsSubmit] = useState(false);
 
   useEffect(() => {
-    const postData = async () => {
-      const response = await axios.get(
-        `https://secondhand-6-3-staging.herokuapp.com/user/buku/${routes.id}`
-      );
-      //   console.log(response);
-      const data = await response.data;
-      console.log(data);
-
-      setBooks(data);
-    };
-    postData();
+    postData()
   }, []);
+
+  const postData = async () => {
+    const response = await axios.get(
+      `https://secondhand-6-3-staging.herokuapp.com/user/buku/${routes.id}`
+    );
+    //   console.log(response);
+    const data = await response.data;
+    console.log(data);
+
+    setBooks(data);
+  };
 
   const handleChange = (e) => {
     /*console.log(e.target);*/
@@ -88,19 +89,16 @@ export default function Book() {
                       <p className={styles.judul}>{a.nama}</p>
                       <p className={styles.pengarang}>{a.pengarang}</p>
                       <p className={styles.harga}>{a.harga}</p>
-
-                      <Link href="">
-                        <a>
-                          <Button
-                            className={styles.btnNego}
-                            onClick={handleShow}
-                          >
-                            <p className={styles.textBtn}>
-                              Saya tertarik dan ingin nego
-                            </p>
-                          </Button>
-                        </a>
-                      </Link>
+                      <a>
+                        <Button
+                          className={styles.btnNego}
+                          onClick={handleShow}
+                        >
+                          <p className={styles.textBtn}>
+                            Saya tertarik dan ingin nego
+                          </p>
+                        </Button>
+                      </a>
                     </div>
 
                     <div className={styles.identitasPenjual}>
@@ -117,63 +115,62 @@ export default function Book() {
                       </div>
                     </div>
                   </div>
+                  <Modal show={show} onHide={handleClose} centered>
+                    <Modal.Header closeButton className={styles.modalHeader}>
+                      <Modal.Title className={styles.modalTitle}>
+                        Masukkan Harga Tawarmu
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className={styles.modalBody}>
+                      <p className={styles.textModal}>
+                        Harga tawaranmu akan diketahui penjual, jika penjual cocok kamu
+                        akan segera dihubungi penjual.
+                      </p>
+                      <div className={styles.containerItemDialog}>
+                        <img
+                          src={a.gambar[0]}
+                          alt="produk"
+                          className={styles.imgItemDialog}
+                        />
+                        <div className={styles.boxproduk}>
+                          <p className={styles.judulItemPopup}>{a.nama}</p>
+                          <p className={styles.hargaItemPopup}>Rp {a.harga}</p>
+                        </div>
+                      </div>
+
+                      <form onSubmit={handleSubmit}>
+                        <div className={styles.boxInput}>
+                          <p className={styles.labelNego}>Harga Tawar</p>
+                          <input
+                            required
+                            name="harga_tawar"
+                            type="number"
+                            placeholder="Rp 0,00"
+                            className={styles.inputNego}
+                            value={formValues.harga_tawar}
+                            onChange={handleChange}
+                          />
+                        </div>
+                        <p>{formErrors.harga_tawar}</p>
+
+                        <Button
+                          variant="primary"
+                          type="submit"
+                          className={styles.btnSubmit}
+                        //   onClick={notify}
+                        // onChildClose={handleClose}
+                        >
+                          Save Changes
+                        </Button>
+                      </form>
+                    </Modal.Body>
+                    <Modal.Footer className={styles.modalFooter}>
+                    </Modal.Footer>
+                  </Modal>
                 </div>
               );
             })
             : "Loading..."}
-
-          <Modal show={show} onHide={handleClose} centered>
-            <Modal.Header closeButton className={styles.modalHeader}>
-              <Modal.Title className={styles.modalTitle}>
-                Masukkan Harga Tawarmu
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body className={styles.modalBody}>
-              <p className={styles.textModal}>
-                Harga tawaranmu akan diketahui penjual, jika penjual cocok kamu
-                akan segera dihubungi penjual.
-              </p>
-              <div className={styles.containerItemDialog}>
-                <img
-                  src="/assets/img/titik_nol.jpg"
-                  alt="produk"
-                  className={styles.imgItemDialog}
-                />
-                <div className={styles.boxproduk}>
-                  <p className={styles.judulItemPopup}>Titik Nol</p>
-                  <p className={styles.hargaItemPopup}>Rp 250.000</p>
-                </div>
-              </div>
-
-              <form onSubmit={handleSubmit}>
-                <div className={styles.boxInput}>
-                  <p className={styles.labelNego}>Harga Tawar</p>
-                  <input
-                    required
-                    name="harga_tawar"
-                    type="number"
-                    placeholder="Rp 0,00"
-                    className={styles.inputNego}
-                    value={formValues.harga_tawar}
-                    onChange={handleChange}
-                  />
-                </div>
-                <p>{formErrors.harga_tawar}</p>
-
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className={styles.btnSubmit}
-                //   onClick={notify}
-                // onChildClose={handleClose}
-                >
-                  Save Changes
-                </Button>
-              </form>
-            </Modal.Body>
-            <Modal.Footer className={styles.modalFooter}>
-            </Modal.Footer>
-          </Modal>
         </Container>
       </Layout>
     </>

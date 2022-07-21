@@ -20,7 +20,7 @@ import Link from "next/link";
 // import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import { useRouter } from "next/router";
 
-export const NavLogin = () => {
+export const NavLoginAdmin = () => {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState('')
 
@@ -109,7 +109,7 @@ export const NavLogin = () => {
                       </p>
                     </div>
                     <div className={styles.boxDetailBottom}>
-                      <p className={styles.productName}>Jam Tangan Casio USER!!!!!!!!!</p>
+                      <p className={styles.productName}>Jam Tangan Casio NYA ADMINNN!</p>
                       <p className={styles.price}>Rp 250.000</p>
                       <p className={styles.offer}>Ditawar Rp 200.000</p>
                     </div>
