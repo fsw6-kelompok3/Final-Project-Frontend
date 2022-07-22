@@ -3,6 +3,8 @@ import Head from "next/head";
 import Script from "next/script";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/globals.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -14,6 +16,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <Component {...pageProps} />
+      <ToastContainer autoClose={5000}/>
     </>
   );
 }

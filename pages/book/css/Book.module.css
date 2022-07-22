@@ -212,6 +212,7 @@
 .boxInput{
   display:flex;
   flex-direction:column;
+  margin-bottom: 24px;
 }
 .labelNego {
   font-family: "Poppins";
