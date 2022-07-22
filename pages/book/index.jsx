@@ -36,8 +36,9 @@ const Index = () => {
 
   const handleInput = (e) => {
     //e.preventDefault()
-    setBtnValue(e.currentTarget.value)
     handleFilter()
+    setBtnValue(e.currentTarget.value)
+  
   }
 
   const handleFilter = async () => {
