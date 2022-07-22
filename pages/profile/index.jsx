@@ -30,6 +30,8 @@ export default function Profile() {
     const [fileInputState, setFileInputState] = useState([]);
     const [previewSource, setPreviewSource] = useState([]);
 
+    const [identify, setIdentify] = useState(false)
+
     const router = useRouter()
 
     const getData = async () => {
@@ -122,7 +124,7 @@ export default function Profile() {
                 }
             })
 
-            router.push('/dashboard')
+            router.push('/')
             console.log('This is a successful request, congratulations')
         } catch (error) {
             console.log('Unsuccessful put request')
@@ -169,6 +171,16 @@ export default function Profile() {
             router.push('/')
         } else {
             console.log('You are neither. What are you?')
+        }
+    }
+
+    const prevbtn = async () => {
+        const user = window.localStorage.getItem('user')
+
+        if (JSON.parse(user).user.kota == null || JSON.parse(user).user.foto == null || JSON.parse(user).user.alamat == null || JSON.parse(user).user.nohp == null == null) {
+            setIdentify(false)
+        } else {
+            setIdentify(true)
         }
     }
 
@@ -233,12 +245,15 @@ export default function Profile() {
                 <Container className={styles.container}>
                     <div className={styles.containerForm}>
                         <div className={styles.boxLeft}>
-                            <a>
-                                <ArrowLeftShort
-                                    className={styles.prevBtn}
-                                    onClick={handleReturn}
-                                />
-                            </a>
+                            {identify == true
+                                ?
+                                <a>
+                                    <ArrowLeftShort
+                                        className={styles.prevBtn}
+                                        onClick={handleReturn}
+                                    />
+                                </a>
+                                : ""}
                         </div>
                         <div className={styles.boxRight}>
                             <h1 className={styles.titlePage}> Lengkapi Info Akun</h1>

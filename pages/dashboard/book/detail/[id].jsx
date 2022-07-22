@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Modal } from "react-bootstrap";
 import Layout from "../../../../components/general/Layout";
 import { ArrowLeftShort } from "react-bootstrap-icons";
 import Link from "next/link";
 import styles from "./AddProduct.module.css";
+import styles2 from "./Modal.module.css";
 import axios from '../../../api/axios';
 import { useRouter } from "next/router";
 
@@ -24,6 +25,10 @@ export default function AddProduct() {
 
   const [fileInputState, setFileInputState] = useState([]);
   const [previewSource, setPreviewSource] = useState([]);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const router = useRouter()
   const routes = router.query
@@ -341,7 +346,7 @@ export default function AddProduct() {
                 <div className={styles.boxBtn}>
                   <Button
                     className={styles.btnPreview}
-                    onClick={handleDeleteProduct}
+                    onClick={handleShow}
                   >
                     Delete
                   </Button>
@@ -356,6 +361,49 @@ export default function AddProduct() {
                     Update
                   </Button>
                 </div>
+
+                <Modal show={show} onHide={handleClose} centered>
+                  <Modal.Header closeButton className={styles2.modalHeader} />
+                  <Modal.Body className={styles2.modalBody}>
+                    <div className={styles2.containerItemDialog}>
+                      <img
+                        src="/assets/img/delete.jpg"
+                        alt="produk"
+                        className={styles2.imgItemDialog}
+                      />
+                    </div>
+                    <Modal.Title className={styles2.modalTitle}>
+                      Menghapus Data Buku
+                    </Modal.Title>
+                    <p className={styles2.textModal}>
+                      Setelah dihapus, data buku tidak dapat dikembalikan lagi.
+                      <span className={styles2.spanTextModal}>
+                        {" "}
+                        Yakin ingin menghapus?
+                      </span>
+                    </p>
+                  </Modal.Body>
+                  <Modal.Footer className={styles2.modalFooter}>
+                    <div className={styles2.btnContainer}>
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        className={styles2.btnYa}
+                        onClick={handleDeleteProduct}
+                      >
+                        Ya
+                      </Button>
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        className={styles2.btnTidak}
+                        onClick={handleClose}
+                      >
+                        Tidak
+                      </Button>
+                    </div>
+                  </Modal.Footer>
+                </Modal>
               </form>
             </div>
           </div>

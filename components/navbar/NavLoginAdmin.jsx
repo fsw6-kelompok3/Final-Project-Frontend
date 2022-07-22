@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import Image from 'next/image'
 import styles from "./css/NavLogin.module.css";
 import {
@@ -19,10 +19,12 @@ import Link from "next/link";
 // import { CheckLg } from "react-bootstrap-icons";
 // import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import { useRouter } from "next/router";
+import axios from "axios"
 
 export const NavLoginAdmin = () => {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState('')
+  const [transaksi, setTransaksi] = useState([])
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -40,6 +42,27 @@ export const NavLoginAdmin = () => {
     window.localStorage.removeItem('user')
     router.push('/login')
   }
+
+  const getTransaksi = async () => {
+    const token = window.localStorage.getItem('token')
+    try {
+      const response = await axios.get('https://secondhand-6-3-staging.herokuapp.com/transaksi/seller', {
+        headers: {
+          Token: token
+        }
+      })
+
+      console.log(response.data.data)
+      setTransaksi(response.data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getTransaksi()
+  }, [])
+
 
   return (
     <>
@@ -92,51 +115,35 @@ export const NavLoginAdmin = () => {
                 <Bell className={styles.btnIconDropdown} />
               </Dropdown.Toggle>
               <Dropdown.Menu className={styles.menuNotif}>
-                <Dropdown.Item
-                  className={styles.boxAttributeProduct}
-                  onClick={() => router.push(`/offer-info`)}>
-                  <img
-                    src="/assets/img/bara.jpg"
-                    alt="product"
-                    className={styles.imgProduct}
-                  />
+                {transaksi.map((a, i) => {
+                  return (
+                    <div key={i}>
+                      <Dropdown.Item
+                        className={styles.boxAttributeProduct}
+                        onClick={() => router.push(`/offer-info`)}>
+                        <img
+                          src={a.nama_buku.gambar[0]}
+                          alt="product"
+                          className={styles.imgProduct}
+                        />
 
-                  <div className={styles.boxDetailProduct}>
-                    <div className={styles.boxDetailTop}>
-                      <p className={styles.subTitle}>Penawaran produk</p>
-                      <p className={styles.dateTime}>
-                        20 Apr, 14:04 <Dot className={styles.dot} />
-                      </p>
+                        <div className={styles.boxDetailProduct}>
+                          <div className={styles.boxDetailTop}>
+                            <p className={styles.subTitle}>Penawaran produk</p>
+                            <p className={styles.dateTime}>
+                              {Date(a.updatedAt)}<Dot className={styles.dot} />
+                            </p>
+                          </div>
+                          <div className={styles.boxDetailBottom}>
+                            <p className={styles.productName}>{a.nama_buku.nama}</p>
+                            <p className={styles.price}>Rp {a.nama_buku.harga}</p>
+                            <p className={styles.offer}>Ditawar Rp {a.harga_tawar}</p>
+                          </div>
+                        </div>
+                      </Dropdown.Item>
                     </div>
-                    <div className={styles.boxDetailBottom}>
-                      <p className={styles.productName}>Jam Tangan Casio NYA ADMINNN!</p>
-                      <p className={styles.price}>Rp 250.000</p>
-                      <p className={styles.offer}>Ditawar Rp 200.000</p>
-                    </div>
-                  </div>
-                </Dropdown.Item>
-
-                <Dropdown.Item href="/" className={styles.boxAttributeProduct}>
-                  <img
-                    src="/assets/img/bara.jpg"
-                    alt="product"
-                    className={styles.imgProduct}
-                  />
-
-                  <div className={styles.boxDetailProduct}>
-                    <div className={styles.boxDetailTop}>
-                      <p className={styles.subTitle}>Berhasil Diterbitkan</p>
-                      <p className={styles.dateTime}>
-                        20 Apr, 14:04 <Dot className={styles.dot} />
-                      </p>
-                    </div>
-                    <div className={styles.boxDetailBottom}>
-                      <p className={styles.productName}>Jam Tangan Casio</p>
-                      <p className={styles.price}>Rp 250.000</p>
-                      {/* <p className={styles.offer}>Ditawar Rp 200.000</p> */}
-                    </div>
-                  </div>
-                </Dropdown.Item>
+                  )
+                })}
               </Dropdown.Menu>
             </Dropdown>
 

@@ -66,13 +66,20 @@ export default function Login() {
       window.localStorage.setItem('user', JSON.stringify(data.data))
 
       if (data.data.user.level === 'admin') {
-        router.push('/dashboard')
+        if (data.data.user.kota == null || data.data.user.foto == null || data.data.user.alamat == null || data.data.user.nohp == null) {
+          router.push('/profile')
+        } else {
+          router.push('/dashboard')
+        }
         setIsSubmit(true)
       } else {
-        router.push('/')
+        if (data.data.user.kota == null || data.data.user.foto == null || data.data.user.alamat == null || data.data.user.nohp == null) {
+          router.push('/profile')
+        } else {
+          router.push('/')
+        }
         setIsSubmit(true)
       }
-
     } catch (error) {
       console.log(error)
     }
