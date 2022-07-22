@@ -4,8 +4,41 @@ import { Container, Button, Row } from "react-bootstrap";
 import styles from "./css/Register.module.css";
 import Link from "next/link";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import toast,{Toaster} from "react-hot-toast";
+
 
 export default function Register() {
+  
+  const [name,setName] = useState('');
+
+  const {register, handleSubmit} = useForm()
+  const onSubmit = (data) => {
+    axios.post("https://secondhand-6-3-staging.herokuapp.com/auth/register/admin",{
+      email :data.email,
+      password :data.password,
+      username :data.username
+    })
+    toast.success("Register Berhasil!",{
+      duration :4000,
+      position:'top-center',
+    })
+    window .setTimeout(function(){
+      window.location.href = "/login";
+    },3000);
+    console.log(data);
+  }
+    
+
+
+
+
+
+
+
+
+
   const initialValues = { nama: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
@@ -133,8 +166,8 @@ export default function Register() {
                   variant="primary"
                   type="submit"
                   className={styles.btnSubmit}
-                  //   onClick={notify}
-                  // onChildClose={handleClose}
+                    onClick={notify}
+                  onChildClose={handleClose}
                 >
                   Daftar
                 </Button>
