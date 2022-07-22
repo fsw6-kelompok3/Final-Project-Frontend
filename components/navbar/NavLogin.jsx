@@ -58,7 +58,7 @@ export const NavLogin = () => {
       console.log(error)
     }
   }
-  
+
   useEffect(() => {
     getTransaksi()
   }, [])
@@ -104,35 +104,35 @@ export const NavLogin = () => {
                 <Bell className={styles.btnIconDropdown} />
               </Dropdown.Toggle>
               <Dropdown.Menu className={styles.menuNotif}>
-               
-                {transaksi.map((a,i) => {
+
+                {transaksi.map((a, i) => {
                   return (
                     <div key={i}>
-                 <Dropdown.Item
-                  className={styles.boxAttributeProduct}
-                  onClick={() => router.push(`/offer-info`)}>
-                  <img
-                    src={a.nama_buku.gambar[0]}
-                    alt="product"
-                    className={styles.imgProduct}
-                  />
+                      <Dropdown.Item
+                        className={styles.boxAttributeProduct}
+                        onClick={() => router.push(`/offer-info/${a.id}`)}>
+                        <img
+                          src={a.nama_buku.gambar[0]}
+                          alt="product"
+                          className={styles.imgProduct}
+                        />
 
-                  <div className={styles.boxDetailProduct}>
-                    <div className={styles.boxDetailTop}>
-                      <p className={styles.subTitle}>Penawaran produk</p>
-                      <p className={styles.dateTime}>
-                        {a.updatedAt}<Dot className={styles.dot} />
-                      </p>
+                        <div className={styles.boxDetailProduct}>
+                          <div className={styles.boxDetailTop}>
+                            <p className={styles.subTitle}>Penawaran produk</p>
+                            <p className={styles.dateTime}>
+                              {a.updatedAt}<Dot className={styles.dot} />
+                            </p>
+                          </div>
+                          <div className={styles.boxDetailBottom}>
+                            <p className={styles.productName}>{a.nama_buku.nama}</p>
+                            <p className={styles.price}>Rp {a.nama_buku.harga}</p>
+                            <p className={styles.offer}>Ditawar Rp {a.harga_tawar} </p>
+                            <p className={styles.offer}>Status :{a.status_penjualan == null ? ' Segera Di Hubungi Oleh Penjual' : a.status_penjualan == true ? ' Transaksi Berhasil' : ' Transaksi Gagal'} </p>
+                          </div>
+                        </div>
+                      </Dropdown.Item>
                     </div>
-                    <div className={styles.boxDetailBottom}>
-                      <p className={styles.productName}>{a.nama_buku.nama}</p>
-                      <p className={styles.price}>Rp {a.nama_buku.harga}</p>
-                      <p className={styles.offer}>Ditawar Rp {a.harga_tawar} </p>
-                      <p className={styles.offer}>Status :{a.status_penjualan== null?' Segera Di Hubungi Oleh Penjual' :a.status_penjualan== true?' Transaksi Berhasil' : ' Transaksi Gagal'} </p>
-                    </div>
-                  </div>
-                </Dropdown.Item>
-                </div>
                   )
                 })}
               </Dropdown.Menu>

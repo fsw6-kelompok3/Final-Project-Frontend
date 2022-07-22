@@ -8,6 +8,54 @@ import Link from "next/link";
 import { useRouter } from "next/router"
 import axios from '../api/axios'
 
+const penawaran = [
+  {
+    buyer_name: "Atala Aruna W.",
+    address: "Jakarta",
+    buyer_img: "/assets/img/fotoPembeli.png",
+    product_offer: [
+      {
+        datetime: "20 Apr, 14:04",
+        product_img: "/assets/img/bara.jpg",
+        product_name: "Bara",
+        product_price: "75650",
+        product_offer_price: "60000",
+      },
+      {
+        datetime: "20 Apr, 14:04",
+        product_img: "/assets/img/titik_nol.jpg",
+        product_name: "Titik Nol",
+        product_price: "104000",
+        product_offer_price: "60000",
+      },
+    ],
+  },
+  {
+    buyer_name: "Bruno Mars",
+    address: "Bali",
+    buyer_img: "/assets/img/fotoPenjual.png",
+    product_offer: [
+      {
+        datetime: "20 Apr, 14:04",
+        product_img: "/assets/img/titik_nol.jpg",
+        product_name: "Titik Nol",
+        product_price: "104000",
+        product_offer_price: "50000",
+      },
+    ],
+  },
+  // {
+  //   buyer: "",
+  //   address: "",
+  //   buyer_img: "",
+  //   datetime: "",
+  //   product_img:"",
+  //   product_name:"",
+  //   product_price:"",
+  //   product_offer_price:"",
+  // },
+];
+
 export default function OfferInfo(props) {
   const router = useRouter()
   const routes = router.query
@@ -19,7 +67,7 @@ export default function OfferInfo(props) {
 
   const [formValues, setFormValues] = useState({ transaksi: "" });
 
-  const [transaksiDetail, setTransaksiDetail] = useState()
+  const [transaksiDetail, setTransaksiDetail] = useState([])
 
   const getData = async () => {
     const token = await window.localStorage.getItem('token')
@@ -31,8 +79,8 @@ export default function OfferInfo(props) {
         }
       });
 
-      setTransaksiDetail(response)
-      // console.log(transaksiDetail)
+      setTransaksiDetail(response.data.data[0])
+      console.log(transaksiDetail)
     } catch (error) {
       console.log(error)
     }
@@ -116,13 +164,13 @@ export default function OfferInfo(props) {
 
                 <div className={styles.boxContainerTop}>
                   <img
-                    src=''
+                    src="/assets/img/pict.png"
                     alt="user"
                     className={styles.imgPembeli}
                   />
                   <div className={styles.boxInner}>
-                    <p className={styles.username}></p>
-                    <p className={styles.address}></p>
+                    <p className={styles.username}>Nama Pembeli</p>
+                    <p className={styles.address}>Alamat Pembeli</p>
                   </div>
                 </div>
 
@@ -132,7 +180,7 @@ export default function OfferInfo(props) {
                   <div className={styles.boxProduct}>
                     <div className={styles.boxAttributeProduct}>
                       <img
-                        src=''
+                        src="/assets/img/bara.jpg"
                         alt="product"
                         className={styles.imgProduct}
                       />
@@ -140,12 +188,12 @@ export default function OfferInfo(props) {
                       <div className={styles.boxDetailProduct}>
                         <div className={styles.boxDetailTop}>
                           <p className={styles.subTitle}>Penawaran produk</p>
-                          <p className={styles.dateTime}></p>
+                          <p className={styles.dateTime}>20 Apr, 14:04</p>
                         </div>
                         <div className={styles.boxDetailBottom}>
-                          <p className={styles.productName}></p>
-                          <p className={styles.price}>Rp </p>
-                          <p className={styles.offer}>Ditawar Rp </p>
+                          <p className={styles.productName}>Jam Tangan Casio</p>
+                          <p className={styles.price}>Rp 250.000</p>
+                          <p className={styles.offer}>Ditawar Rp 200.000</p>
                         </div>
                       </div>
                     </div>

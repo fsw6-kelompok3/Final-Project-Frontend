@@ -153,8 +153,8 @@
 .menuNotif {
   padding: 12px 12px 0px 12px;
   border-radius: 16px;
-  max-width: 500px;
   max-height: 500px;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 .boxAttributeProduct {
@@ -187,8 +187,8 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 8px;
-  margin-top: -2px;
+  font-size: 10px;
+  margin-top: -4px;
   color: #8a8a8a;
 }
 .dot {
@@ -207,6 +207,7 @@
 .productName {
   color: #000000;
   margin: -15px 0px 4px 0px;
+  text-overflow: ellipsis;
 }
 .price {
   color: #151515;
