@@ -120,7 +120,7 @@ export const NavLoginAdmin = () => {
                     <div key={i}>
                       <Dropdown.Item
                         className={styles.boxAttributeProduct}
-                        onClick={() => router.push(`/offer-info`)}>
+                        onClick={() => router.push(`/offer-info/${a.id}`)}>
                         <img
                           src={a.nama_buku.gambar[0]}
                           alt="product"
@@ -138,7 +138,7 @@ export const NavLoginAdmin = () => {
                             <p className={styles.productName}>{a.nama_buku.nama}</p>
                             <p className={styles.price}>Rp {a.nama_buku.harga}</p>
                             <p className={styles.offer}>Ditawar Rp {a.harga_tawar}</p>
-                            <p className={styles.offer}>Status Transaksi :{a.status_penjualan== null?' Belum Terkonfirmasi' :a.status_penjualan== true?' Berhasil' : ' Gagal'} </p>
+                            <p className={styles.offer}>Status Transaksi :{a.status_penjualan == null ? ' Belum Terkonfirmasi' : a.status_penjualan == true ? ' Berhasil' : ' Gagal'} </p>
                           </div>
                         </div>
                       </Dropdown.Item>
