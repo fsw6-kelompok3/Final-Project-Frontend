@@ -70,16 +70,6 @@ export const NavLogin = () => {
             {/* <NavbarToggle aria-controls="basic-navbar-nav" /> */}
           </div>
           <div className="d-flex">
-            <Link href="/dashboard">
-              <a>
-                <ListUl
-                  className={styles.btnIcon}
-                  onClick={() => {
-                  }}
-                />
-              </a>
-            </Link>
-
             {/**
             <Link href="/offer-info">
               <a>
@@ -148,7 +138,7 @@ export const NavLogin = () => {
                 <p className={styles.brand}>SECOND HAND BOOK</p>
                 <Dropdown.Item href="/profile" className={styles.itemDropdown}>
                   <Person className={styles.subIcon} />
-                  Profil
+                  Edit Profil
                 </Dropdown.Item>
                 <Dropdown.Item className={styles.itemLogout} onClick={logout}>Logout</Dropdown.Item>
               </Dropdown.Menu>

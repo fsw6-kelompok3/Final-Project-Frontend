@@ -69,14 +69,13 @@
     border-color: #008f8c;
   }
 .btnSubmit {
-  width: 50%;
+  width: 100%;
   border-radius: 16px;
   align-items: center;
   padding: 12px 24px;
   background: #008f8c;
   border-color: #008f8c;
   margin-bottom: 40px;
-  margin-left: 8px;
 }
 .btnSubmit:hover {
   color: #fff;

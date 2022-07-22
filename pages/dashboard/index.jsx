@@ -53,7 +53,9 @@ export default function Seller() {
         <h3 className={styles.wordOne}>Daftar Jual Saya</h3>
         <Card className={styles.cardOneBorder}>
           <Card.Body className={styles.cardOne}>
-            <img src={gambarPenjual} alt="picture_user" />
+            <img src={gambarPenjual !== null
+              ? gambarPenjual
+              : "/assets/img/pict.png"} alt="picture_user" />
             <div className={styles.fillCard}>
               <p className={styles.namaPenjual}>{namaPenjual}</p>
               <h6 className={styles.address}>{kotaPenjual}</h6>
@@ -111,9 +113,11 @@ export default function Seller() {
                 </a>
               </Link>
             </div>
-            {buku.map((buku, i) => (
-              <ProdukCard buku={buku} key={i} />
-            ))}
+            {buku
+              ? buku.map((buku, i) => (
+                <ProdukCard buku={buku} key={i} />
+              ))
+              : "It's empty..."}
           </div>
         </div>
       </Container>
