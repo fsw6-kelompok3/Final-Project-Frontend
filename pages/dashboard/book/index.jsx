@@ -11,7 +11,7 @@ import axios from '../../api/axios'
 export default function Book() {
     const router = useRouter()
 
-    const [buku, setBuku] = useState({})
+    const [buku, setBuku] = useState([])
 
     const handlePreview = async () => {
         const data = window.localStorage.getItem('preview')
@@ -27,7 +27,7 @@ export default function Book() {
         <>
             <Layout>
                 <Container>
-                    {buku
+                    {buku.length > 0
                         ? buku.map((a, i) => {
                             return (
                                 <div key={i} className={styles.container}>
