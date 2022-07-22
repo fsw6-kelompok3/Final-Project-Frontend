@@ -138,6 +138,7 @@ export const NavLoginAdmin = () => {
                             <p className={styles.productName}>{a.nama_buku.nama}</p>
                             <p className={styles.price}>Rp {a.nama_buku.harga}</p>
                             <p className={styles.offer}>Ditawar Rp {a.harga_tawar}</p>
+                            <p className={styles.offer}>Status Transaksi :{a.status_penjualan== null?' Belum Terkonfirmasi' :a.status_penjualan== true?' Berhasil' : ' Gagal'} </p>
                           </div>
                         </div>
                       </Dropdown.Item>
