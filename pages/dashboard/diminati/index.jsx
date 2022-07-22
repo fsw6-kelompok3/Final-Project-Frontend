@@ -21,6 +21,15 @@ export default function Seller() {
   const [kotaPenjual, setKotaPenjual] = useState('');
   const [gambarPenjual, setGambarPenjual] = useState('');
   const [buku, setBuku] = useState([]);
+  const [isShown, setIsShown] = useState(false)
+
+  const getInfo = async () => {
+    if (buku) {
+      setIsShown(true)
+    } else {
+      setIsShown(false)
+    }
+  }
 
   const getData = async () => {
     const token = window.localStorage.getItem('token')
@@ -44,6 +53,7 @@ export default function Seller() {
 
   useEffect(() => {
     getData()
+    getInfo()
   }, [])
 
   return (
@@ -100,9 +110,12 @@ export default function Seller() {
             </Link>
           </div>
           <div className={styles.produkContainer}>
-            {buku.map((a) => (
-              <ProdukCard buku={a} key={a.id} />
-            ))}
+            {isShown == true
+              ?
+              buku.map((a) => (
+                <ProdukCard buku={a} key={a.id} />
+              ))
+              : "You have nothing..."}
           </div>
         </div>
       </Container>

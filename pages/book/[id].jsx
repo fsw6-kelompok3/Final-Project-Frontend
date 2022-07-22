@@ -23,6 +23,9 @@ export default function Book() {
 
   const initialValues = { harga_tawar: "" };
   const [formValues, setFormValues] = useState(initialValues);
+ 
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [isShown, setIsShown] = useState(false)
 
   const handleChange = (e) => {
     /*console.log(e.target);*/
@@ -86,6 +89,8 @@ export default function Book() {
   };
 
   useEffect(() => {
+    getInfo();
+    
     //get data
     const postData = async () => {
       const response = await axios.get(
@@ -116,9 +121,30 @@ export default function Book() {
     };
     tawaran();
   }, []);
+  
+  const getInfo = async () => {
+    const token = await window.localStorage.getItem('token')
+    const user = await window.localStorage.getItem('user')
+
+    if (token) {
+      console.log('This means you have a token!')
+      if (JSON.parse(user).user.level === 'admin') {
+        console.log('This means you are authorized, you are an admin');
+        setIsShown(false)
+      } else if (JSON.parse(user).user.level === 'user') {
+        console.log('This means you are authorized, you are a user');
+        setIsShown(true)
+      } else {
+        console.log('You are neither. What are you?')
+        setIsShown(false)
+      }
+    } else {
+      console.log('Your token is not here. Login first')
+      setIsShown(false)
+    }
+  }
 
   const cekTawaran = async () => {
-
   };
 
   const notify = () => {

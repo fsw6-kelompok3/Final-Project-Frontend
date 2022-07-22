@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Carousel } from "react-bootstrap";
 import Layout from "../../../../components/general/Layout";
 import { ArrowLeftShort } from "react-bootstrap-icons";
 import Link from "next/link";
 import styles from "./AddProduct.module.css";
+import styles2 from "./Book.module.css";
 import axios from '../../../api/axios';
 import { useRouter } from "next/router";
 
@@ -24,7 +25,24 @@ export default function AddProduct() {
 
   const [fileInputState, setFileInputState] = useState([]);
   const [previewSource, setPreviewSource] = useState([]);
+  const [dataPreview, setDataPreview] = useState([]);
+  const [kategori, setKategori] = useState([])
+  const [isPreview, setIsPreview] = useState(false);
+  const [buku, setBuku] = useState([])
+
   const router = useRouter()
+
+  const getKategori = async () => {
+    try {
+      const response = await axios.get('/v1/kategori')
+
+      const data = await response.data
+      console.log(data.data)
+      setKategori(data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleAddProduct = async () => {
     const token = window.localStorage.getItem('token')
@@ -65,6 +83,32 @@ export default function AddProduct() {
       console.log('Unsuccessful post request')
     }
   }
+
+  const handlePreview = (e) => {
+    e.preventDefault()
+    setIsPreview(true)
+
+    try {
+      const formData = new FormData()
+
+      formData.append('nama', formValues.nama)
+      formData.append('deskripsi', formValues.deskripsi)
+      Object.values(fileInputState).forEach((file) => {
+        formData.append('gambar', file);
+      });
+      formData.append('harga', formValues.harga)
+      formData.append('pengarang', formValues.pengarang)
+      formData.append('lokasi', formValues.lokasi)
+      formData.append('tahun_terbit', formValues.tahun_terbit)
+      formData.append('kategori_id', formValues.kategori_id)
+
+      setDataPreview([...formData])
+      setBuku([...formData])
+      console.log(buku)
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   const handleChange = (e) => {
     // console.log(e.target);
@@ -121,27 +165,9 @@ export default function AddProduct() {
     return errors;
   };
 
-  const handlePreview = () => {
-    const formData = new FormData()
-
-    formData.append('nama', formValues.nama)
-    formData.append('deskripsi', formValues.deskripsi)
-    Object.values(fileInputState).forEach((file) => {
-      formData.append('gambar', file);
-    });
-    formData.append('harga', formValues.harga)
-    formData.append('pengarang', formValues.pengarang)
-    formData.append('lokasi', formValues.lokasi)
-    formData.append('tahun_terbit', formValues.tahun_terbit)
-    formData.append('kategori_id', formValues.kategori_id)
-
-    // console.log(...formData)
-
-    window.localStorage.setItem('preview', formData)
-    router.push('/dashboard/book')
-  };
-
   useEffect(() => {
+    getKategori()
+
     const previewSource = [], fileReaders = [];
     let isCancel = false;
 
@@ -170,163 +196,171 @@ export default function AddProduct() {
         }
       });
     };
-  }, [fileInputState]);
+  }, []); //[fileInputState]);
 
   return (
     <>
       <Layout>
         <Container className={styles.container}>
-          <div className={styles.containerForm}>
-
-            <div className={styles.boxLeft}>
-              <Link href="/dashboard">
-                <a>
-                  <ArrowLeftShort className={styles.prevBtn} />
-                </a>
-              </Link>
-            </div>
-
-            <div className={styles.boxRight}>
-              <form onSubmit={handleSubmit}>
-                <div className={styles.boxInput}>
-                  <p className={styles.label}>Nama Produk</p>
-                  <input
-                    required
-                    name="nama"
-                    type="text"
-                    placeholder="Nama Produk"
-                    className={styles.input}
-                    value={formValues.nama}
-                    onChange={handleChange}
-                  />
-                  <p className={styles.alert}>{formErrors.nama}</p>
+          {
+            isPreview === false
+              ?
+              <div className={styles.containerForm}>
+                <div className={styles.boxLeft}>
+                  <Link href="/dashboard">
+                    <a>
+                      <ArrowLeftShort className={styles.prevBtn} />
+                    </a>
+                  </Link>
                 </div>
 
-                <div className={styles.boxInput}>
-                  <p className={styles.label}>Harga Produk</p>
-                  <input
-                    required
-                    name="harga"
-                    type="number"
-                    placeholder="Rp 0.00"
-                    className={styles.input}
-                    value={formValues.harga}
-                    onChange={handleChange}
-                  />
-                  <p className={styles.alert}>{formErrors.harga}</p>
-                </div>
+                <div className={styles.boxRight}>
+                  <form onSubmit={handleSubmit}>
+                    <div className={styles.boxInput}>
+                      <p className={styles.label}>Nama Produk</p>
+                      <input
+                        required
+                        name="nama"
+                        type="text"
+                        placeholder="Nama Produk"
+                        className={styles.input}
+                        value={formValues.nama}
+                        onChange={handleChange}
+                      />
+                      <p className={styles.alert}>{formErrors.nama}</p>
+                    </div>
 
-                <div className={styles.boxInput}>
-                  <p className={styles.label}>Kategori</p>
-                  <select
-                    required
-                    name="kategori_id"
-                    className={styles.input}
-                    value={formValues.kategori_id}
-                    onChange={handleChange}
-                  >
-                    <option value="">Pilih Kategori</option>
-                    <option value="1">Novel</option>
-                    <option value="2">Fiksi</option>
-                    <option value="3">Horror</option>
-                    <option value="4">Teknologi</option>
-                    <option value="5">Ensiklopedia</option>
-                  </select>
-                  <p className={styles.alert}>{formErrors.kategori_id}</p>
-                </div>
+                    <div className={styles.boxInput}>
+                      <p className={styles.label}>Harga Produk</p>
+                      <input
+                        required
+                        name="harga"
+                        type="number"
+                        placeholder="Rp 0.00"
+                        className={styles.input}
+                        value={formValues.harga}
+                        onChange={handleChange}
+                      />
+                      <p className={styles.alert}>{formErrors.harga}</p>
+                    </div>
 
-                <div className={styles.boxInput}>
-                  <p className={styles.label}>Pengarang</p>
-                  <input
-                    required
-                    name="pengarang"
-                    type="text"
-                    placeholder="Pengarang"
-                    className={styles.input}
-                    value={formValues.pengarang}
-                    onChange={handleChange}
-                  />
-                  <p className={styles.alert}>{formErrors.pengarang}</p>
-                </div>
+                    <div className={styles.boxInput}>
+                      <p className={styles.label}>Kategori</p>
+                      <select
+                        required
+                        name="kategori_id"
+                        className={styles.input}
+                        value={formValues.kategori_id}
+                        onChange={handleChange}
+                      >
+                        <option value="">Pilih Kategori</option>
+                        {kategori.map(kategori =>
+                          <option
+                            key={kategori.id}
+                            value={kategori.id}
+                          >{kategori.jenis_buku}
+                          </option>)}
+                      </select>
+                      <p className={styles.alert}>{formErrors.kategori_id}</p>
+                    </div>
 
-                <div className={styles.boxInput}>
-                  <p className={styles.label}>Lokasi</p>
-                  <input
-                    required
-                    name="lokasi"
-                    type="text"
-                    placeholder="Lokasi"
-                    className={styles.input}
-                    value={formValues.lokasi}
-                    onChange={handleChange}
-                  />
-                  <p className={styles.alert}>{formErrors.lokasi}</p>
-                </div>
+                    <div className={styles.boxInput}>
+                      <p className={styles.label}>Pengarang</p>
+                      <input
+                        required
+                        name="pengarang"
+                        type="text"
+                        placeholder="Pengarang"
+                        className={styles.input}
+                        value={formValues.pengarang}
+                        onChange={handleChange}
+                      />
+                      <p className={styles.alert}>{formErrors.pengarang}</p>
+                    </div>
 
-                <div className={styles.boxInput}>
-                  <p className={styles.label}>Tahun Terbit</p>
-                  <input
-                    required
-                    name="tahun_terbit"
-                    type="number"
-                    placeholder="Tahun Terbit"
-                    className={styles.input}
-                    value={formValues.tahun_terbit}
-                    onChange={handleChange}
-                  />
-                  <p className={styles.alert}>{formErrors.tahun_terbit}</p>
-                </div>
+                    <div className={styles.boxInput}>
+                      <p className={styles.label}>Lokasi</p>
+                      <input
+                        required
+                        name="lokasi"
+                        type="text"
+                        placeholder="Lokasi"
+                        className={styles.input}
+                        value={formValues.lokasi}
+                        onChange={handleChange}
+                      />
+                      <p className={styles.alert}>{formErrors.lokasi}</p>
+                    </div>
 
-                <div className={styles.boxInput}>
-                  <p className={styles.label}>Deskripsi</p>
-                  <textarea
-                    required
-                    name="deskripsi"
-                    placeholder="Contoh: Pengarang, Sinopsis, dll."
-                    className={styles.input}
-                    rows="3"
-                    value={formValues.deskripsi}
-                    onChange={handleChange}
-                  />
-                  <p className={styles.alert}>{formErrors.deskripsi}</p>
-                </div>
+                    <div className={styles.boxInput}>
+                      <p className={styles.label}>Tahun Terbit</p>
+                      <input
+                        required
+                        name="tahun_terbit"
+                        type="number"
+                        placeholder="Tahun Terbit"
+                        className={styles.input}
+                        value={formValues.tahun_terbit}
+                        onChange={handleChange}
+                      />
+                      <p className={styles.alert}>{formErrors.tahun_terbit}</p>
+                    </div>
 
-                <div className={styles.boxInput}>
-                  <p className={styles.label}>Foto Produk</p>
-                  <input
-                    required
-                    multiple
-                    name="foto"
-                    type="file"
-                    accept="image/*"
-                    className={styles.input}
-                    // value={multipleImages}
-                    onChange={handleFileInputChange}
-                  />
-                  <p className={styles.alert}></p>
-                </div>
+                    <div className={styles.boxInput}>
+                      <p className={styles.label}>Deskripsi</p>
+                      <textarea
+                        required
+                        name="deskripsi"
+                        placeholder="Contoh: Pengarang, Sinopsis, dll."
+                        className={styles.input}
+                        rows="3"
+                        value={formValues.deskripsi}
+                        onChange={handleChange}
+                      />
+                      <p className={styles.alert}>{formErrors.deskripsi}</p>
+                    </div>
 
-                <div className={styles.boxBtn}>
-                  <Button
-                    className={styles.btnPreview}
-                    onClick={handlePreview}
-                  >
-                    Preview
-                  </Button>
+                    <div className={styles.boxInput}>
+                      <p className={styles.label}>Foto Produk</p>
+                      <input
+                        required
+                        multiple
+                        name="foto"
+                        type="file"
+                        accept="image/*"
+                        className={styles.input}
+                        // value={multipleImages}
+                        onChange={handleFileInputChange}
+                      />
+                      <p className={styles.alert}></p>
+                    </div>
 
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className={styles.btnSubmit}
-                  //   onClick={notify}
-                  // onChildClose={handleClose}
-                  >
-                    Terbitkan
-                  </Button>
+                    <div className={styles.boxBtn}>
+                      {/**
+                      <Button
+                        className={styles.btnPreview}
+                        onClick={handlePreview}
+                      >
+                        Preview
+                      </Button>
+                        */}
+
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        className={styles.btnSubmit}
+                      //   onClick={notify}
+                      // onChildClose={handleClose}
+                      >
+                        Terbitkan
+                      </Button>
+                    </div>
+                  </form>
                 </div>
-              </form>
-            </div>
-          </div>
+              </div>
+              :
+              "Loading..."
+          }
         </Container>
       </Layout >
     </>

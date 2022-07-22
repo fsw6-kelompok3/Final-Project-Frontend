@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Modal } from "react-bootstrap";
 import Layout from "../../../../components/general/Layout";
 import { ArrowLeftShort } from "react-bootstrap-icons";
 import Link from "next/link";
 import styles from "./AddProduct.module.css";
+import styles2 from "./Modal.module.css";
 import axios from '../../../api/axios';
 import { useRouter } from "next/router";
 
@@ -25,6 +26,10 @@ export default function AddProduct() {
   const [fileInputState, setFileInputState] = useState([]);
   const [previewSource, setPreviewSource] = useState([]);
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const router = useRouter()
   const routes = router.query
 
@@ -35,8 +40,8 @@ export default function AddProduct() {
     const response = await axios.get('/v1/kategori')
 
     const data = await response.data
-    // console.log(data)
-    setKategori([data])
+    // console.log(data.data)
+    setKategori(data.data)
   }
 
   const getData = async () => {
@@ -45,11 +50,9 @@ export default function AddProduct() {
     const data = await response.data;
 
     setBuku(data[0])
-
     setFormValues({
       nama: data[0].nama,
       deskripsi: data[0].deskripsi,
-      gambar: data[0].gambar,
       harga: data[0].harga,
       pengarang: data[0].pengarang,
       lokasi: data[0].lokasi,
@@ -58,7 +61,7 @@ export default function AddProduct() {
     })
   }
 
-  const handleEditProduct = () => {
+  const handleEditProduct = async () => {
     const token = window.localStorage.getItem('token')
 
     try {
@@ -77,7 +80,7 @@ export default function AddProduct() {
 
       console.log(...formData)
 
-      axios.put(`/seller/buku/${routes.id}`, formData, {
+      const response = await axios.post(`/seller/buku/${routes.id}`, formData, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
@@ -86,8 +89,25 @@ export default function AddProduct() {
       })
 
       router.push('/dashboard')
+      console.log('This is a successful request, congratulations')
+    } catch (error) {
+      console.log('Unsuccessful put request')
+    }
+  }
+
+  const handleDeleteProduct = async () => {
+    const token = window.localStorage.getItem('token')
+
+    try {
+      const response = await axios.delete(`/seller/buku/${routes.id}`, {
+        withCredentials: true,
+        headers: {
+          Token: token
+        }
+      })
 
       console.log('This is a successful request, congratulations')
+      router.push('/dashboard')
     } catch (error) {
       console.log('Unsuccessful put request')
     }
@@ -184,7 +204,7 @@ export default function AddProduct() {
         }
       });
     };
-  }, [fileInputState]);
+  }, []);
 
   return (
     <>
@@ -193,11 +213,13 @@ export default function AddProduct() {
           <div className={styles.containerForm}>
 
             <div className={styles.boxLeft}>
-              <Link href="/dashboard">
-                <a>
-                  <ArrowLeftShort className={styles.prevBtn} />
-                </a>
-              </Link>
+
+              <a>
+                <ArrowLeftShort
+                  className={styles.prevBtn}
+                  onClick={() => router.push(`/dashboard/book/${routes.id}`)} />
+              </a>
+
             </div>
 
             <div className={styles.boxRight}>
@@ -240,13 +262,12 @@ export default function AddProduct() {
                     onChange={handleChange}
                   >
                     <option value="">Pilih Kategori</option>
-
-
-                    <option value="1">Novel</option>
-                    <option value="2">Fiksi</option>
-                    <option value="3">Horror</option>
-                    <option value="4">Teknologi</option>
-                    <option value="5">Ensiklopedia</option>
+                    {kategori.map(kategori =>
+                      <option
+                        key={kategori.id}
+                        value={kategori.id}
+                      >{kategori.jenis_buku}
+                      </option>)}
                   </select>
                   <p className={styles.alert}>{formErrors.kategori_id}</p>
                 </div>
@@ -325,8 +346,9 @@ export default function AddProduct() {
                 <div className={styles.boxBtn}>
                   <Button
                     className={styles.btnPreview}
-                    onClick={() => router.push(`/dashboard/book/detail/${buku.id}`)}>
-                    Preview
+                    onClick={handleShow}
+                  >
+                    Delete
                   </Button>
 
                   <Button
@@ -336,9 +358,52 @@ export default function AddProduct() {
                   //   onClick={notify}
                   // onChildClose={handleClose}
                   >
-                    Terbitkan
+                    Update
                   </Button>
                 </div>
+
+                <Modal show={show} onHide={handleClose} centered>
+                  <Modal.Header closeButton className={styles2.modalHeader} />
+                  <Modal.Body className={styles2.modalBody}>
+                    <div className={styles2.containerItemDialog}>
+                      <img
+                        src="/assets/img/delete.jpg"
+                        alt="produk"
+                        className={styles2.imgItemDialog}
+                      />
+                    </div>
+                    <Modal.Title className={styles2.modalTitle}>
+                      Menghapus Data Buku
+                    </Modal.Title>
+                    <p className={styles2.textModal}>
+                      Setelah dihapus, data buku tidak dapat dikembalikan lagi.
+                      <span className={styles2.spanTextModal}>
+                        {" "}
+                        Yakin ingin menghapus?
+                      </span>
+                    </p>
+                  </Modal.Body>
+                  <Modal.Footer className={styles2.modalFooter}>
+                    <div className={styles2.btnContainer}>
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        className={styles2.btnYa}
+                        onClick={handleDeleteProduct}
+                      >
+                        Ya
+                      </Button>
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        className={styles2.btnTidak}
+                        onClick={handleClose}
+                      >
+                        Tidak
+                      </Button>
+                    </div>
+                  </Modal.Footer>
+                </Modal>
               </form>
             </div>
           </div>

@@ -4,6 +4,8 @@ import { Container, Button, Row } from "react-bootstrap";
 import styles from "./css/Register.module.css";
 import Link from "next/link";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { useRouter } from "next/router"
+import axios from "axios"
 
 export default function Register() {
   const initialValues = { nama: "", email: "", password: "", jenis: "" };
@@ -11,11 +13,41 @@ export default function Register() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+  const router = useRouter()
+
   //eye visibility password
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisiblity = () => {
     setShowPassword(showPassword ? false : true);
   };
+
+  const handleRegisterAdmin = async () => {
+    try {
+      const response = await axios.post("https://secondhand-6-3-staging.herokuapp.com/auth/register/admin", {
+        nama: formValues.nama,
+        email: formValues.email,
+        password: formValues.password,
+      })
+
+      router.push('/login')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleRegister = async () => {
+    try {
+      const response = await axios.post("https://secondhand-6-3-staging.herokuapp.com/auth/register/user", {
+        nama: formValues.nama,
+        email: formValues.email,
+        password: formValues.password,
+      })
+
+      router.push('/login')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleChange = (e) => {
     // console.log(e.target);
@@ -27,6 +59,11 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
+    if (formValues.jenis == 'admin') {
+      handleRegisterAdmin()
+    } else if (formValues.jenis == 'user') {
+      handleRegister()
+    }
     setIsSubmit(true);
   };
 
@@ -35,7 +72,7 @@ export default function Register() {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
     }
-  }, [formErrors]);
+  }, []);
 
   const validate = (values) => {
     const errors = {};
