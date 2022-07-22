@@ -120,7 +120,7 @@ export const NavLoginAdmin = () => {
                     <div key={i}>
                       <Dropdown.Item
                         className={styles.boxAttributeProduct}
-                        onClick={() => router.push(`/offer-info`)}>
+                        onClick={() => router.push(`/offer-info/${a.id}`)}>
                         <img
                           src={a.nama_buku.gambar[0]}
                           alt="product"

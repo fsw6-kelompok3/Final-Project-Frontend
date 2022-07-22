@@ -76,7 +76,7 @@ export default function Book() {
                                             <Link href="/dashboard">
                                                 <a>
                                                     <Button className={styles.btnEdit} type="search">
-                                                        <p className={styles.text}>Return</p>
+                                                        <p className={styles.text}>Kembali</p>
                                                     </Button>
                                                 </a>
                                             </Link>

@@ -24,7 +24,7 @@ export default function Profile() {
     const [avatar, setAvatar] = useState();
 
     const [selectedFile, setSelectedFile] = useState();
-    const [preview, setPreview] = useState(null);
+    const [preview, setPreview] = useState([]);
 
     const [user, setUser] = useState()
     const [fileInputState, setFileInputState] = useState([]);
@@ -49,7 +49,7 @@ export default function Profile() {
     const getUser = async () => {
         const token = window.localStorage.getItem('token')
 
-        const response = await axios.get('v1/user', {
+        const response = await axios.get('/v1/user', {
             headers: {
                 Token: token
             }
@@ -177,7 +177,7 @@ export default function Profile() {
     const prevbtn = async () => {
         const user = window.localStorage.getItem('user')
 
-        if (JSON.parse(user).user.kota == null || JSON.parse(user).user.foto == null || JSON.parse(user).user.alamat == null || JSON.parse(user).user.nohp == null == null) {
+        if (JSON.parse(user).user.kota == null || JSON.parse(user).user.foto == null || JSON.parse(user).user.alamat == null || JSON.parse(user).user.nohp == null) {
             setIdentify(false)
         } else {
             setIdentify(true)
@@ -212,6 +212,7 @@ export default function Profile() {
 
     useEffect(() => {
         getData()
+        prevbtn()
 
         console.log(formErrors);
         if (Object.keys(formErrors).length === 0 && isSubmit) {

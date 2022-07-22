@@ -23,7 +23,7 @@ export default function Book() {
 
   const initialValues = { harga_tawar: "" };
   const [formValues, setFormValues] = useState(initialValues);
- 
+
   const [isSubmit, setIsSubmit] = useState(false);
   const [isShown, setIsShown] = useState(false)
 
@@ -90,7 +90,7 @@ export default function Book() {
 
   useEffect(() => {
     getInfo();
-    
+
     //get data
     const postData = async () => {
       const response = await axios.get(
@@ -121,7 +121,7 @@ export default function Book() {
     };
     tawaran();
   }, []);
-  
+
   const getInfo = async () => {
     const token = await window.localStorage.getItem('token')
     const user = await window.localStorage.getItem('user')
@@ -166,30 +166,30 @@ export default function Book() {
           {/* <ToastContainer /> */}
           {books
             ? books.map((a, i) => {
-                return (
-                  <div key={i} className={styles.container}>
-                    <div className={styles.sideLeft}>
-                      <Carousel interval={null} className={styles.carousel}>
-                        {a.gambar.map((data, i) => (
-                          <Carousel.Item key={i}>
-                            <img src={data} alt="book" className={styles.img} />
-                          </Carousel.Item>
-                        ))}
-                      </Carousel>
+              return (
+                <div key={i} className={styles.container}>
+                  <div className={styles.sideLeft}>
+                    <Carousel interval={null} className={styles.carousel}>
+                      {a.gambar.map((data, i) => (
+                        <Carousel.Item key={i}>
+                          <img src={data} alt="book" className={styles.img} />
+                        </Carousel.Item>
+                      ))}
+                    </Carousel>
 
-                      {/* <div>{JSON.stringify(router.query)}</div> */}
-                      <div className={styles.containerDeskripsi}>
-                        <p className={styles.titleDeskripsi}>Deskripsi</p>
-                        <p className={styles.deskripsi}>{a.deskripsi}</p>
-                      </div>
+                    {/* <div>{JSON.stringify(router.query)}</div> */}
+                    <div className={styles.containerDeskripsi}>
+                      <p className={styles.titleDeskripsi}>Deskripsi</p>
+                      <p className={styles.deskripsi}>{a.deskripsi}</p>
                     </div>
-                    <div className={styles.sideRight}>
-                      <div className={styles.nego}>
-                        <p className={styles.judul}>{a.nama}</p>
-                        <p className={styles.pengarang}>{a.pengarang}</p>
-                        <p className={styles.harga}>Rp {a.harga}</p>
+                  </div>
+                  <div className={styles.sideRight}>
+                    <div className={styles.nego}>
+                      <p className={styles.judul}>{a.nama}</p>
+                      <p className={styles.pengarang}>{a.pengarang}</p>
+                      <p className={styles.harga}>Rp {a.harga}</p>
 
-                        {/* {tawaran.id_barang && tawaran.id_user
+                      {/* {tawaran.id_barang && tawaran.id_user
                           ? tawaran.map((b, i) => {
                               return (
                                 <>
@@ -206,30 +206,38 @@ export default function Book() {
                               );
                             })
                           : "loading.."} */}
-                        <Button className={styles.btnNego} onClick={handleShow}>
-                          <p className={styles.textBtn}>
-                            Saya tertarik dan ingin nego
-                          </p>
-                        </Button>
-                      </div>
+                      {isShown == true
+                        ?
+                        <a>
+                          <Button
+                            className={styles.btnNego}
+                            onClick={handleShow}
+                          >
+                            <p className={styles.textBtn}>
+                              Saya tertarik dan ingin nego
+                            </p>
+                          </Button>
+                        </a>
+                        : ""}
+                    </div>
 
-                      <div className={styles.identitasPenjual}>
-                        <img
-                          src={a.penjual_barang.foto}
-                          alt="penjual"
-                          className={styles.imgPenjual}
-                        />
-                        <div className={styles.box}>
-                          <p className={styles.namaPenjual}>
-                            {a.penjual_barang.nama}
-                          </p>
-                          <p className={styles.kota}>{a.penjual_barang.kota}</p>
-                        </div>
+                    <div className={styles.identitasPenjual}>
+                      <img
+                        src={a.penjual_barang.foto}
+                        alt="penjual"
+                        className={styles.imgPenjual}
+                      />
+                      <div className={styles.box}>
+                        <p className={styles.namaPenjual}>
+                          {a.penjual_barang.nama}
+                        </p>
+                        <p className={styles.kota}>{a.penjual_barang.kota}</p>
                       </div>
                     </div>
                   </div>
-                );
-              })
+                </div>
+              );
+            })
             : "Loading..."}
 
           <Modal show={show} onHide={handleClose} centered>
@@ -277,8 +285,8 @@ export default function Book() {
                   variant="primary"
                   type="submit"
                   className={styles.btnSubmit}
-                  //   onClick={notify}
-                  // onClose={handleClose}
+                //   onClick={notify}
+                // onClose={handleClose}
                 >
                   Save Changes
                 </Button>
