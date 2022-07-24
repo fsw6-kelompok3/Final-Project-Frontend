@@ -7,14 +7,16 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Heart, HeartFill } from "react-bootstrap-icons";
 
 export default function Book() {
   const router = useRouter();
   const routes = router.query; //get id from /book
 
   const [books, setBooks] = useState([]);
-  //   console.log("tampiljannn id", routes.id);
-  const [tawaran, setTawaran] = useState([]);
+  const [like, setLike] = useState(false); //untuk toggle btn
+  const [likeValue, setLikeValue] = useState([]);
+  const [unLikeValue, setUnLikeValue] = useState([]);
 
   //modal
   const [show, setShow] = useState(false);
@@ -23,9 +25,71 @@ export default function Book() {
 
   const initialValues = { harga_tawar: "" };
   const [formValues, setFormValues] = useState(initialValues);
+  const [isShown, setIsShown] = useState(false);
 
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [isShown, setIsShown] = useState(false)
+  //like-unlike
+  const toggleLike = () => {
+    setLike(like ? false : true);
+  };
+
+  const handleInputLike = (e) => {
+    handleLike();
+    setLikeValue(e.currentTarget.value);
+    toggleLike();
+  };
+
+  const handleInputUnLike = (e) => {
+    handleUnLike();
+    setUnLikeValue(e.currentTarget.value);
+    toggleLike();
+  };
+
+  const handleLike = async () => {
+    const token = window.localStorage.getItem("token");
+    try {
+      const data = await axios.patch(
+        `https://secondhand-6-3-staging.herokuapp.com/v1/buku/${routes.id}/like`,
+        {
+          buku: routes.id,
+          like: likeValue,
+        },
+        {
+          headers: {
+            Token: token,
+          },
+        }
+      );
+      window.localStorage.setItem('userlike', JSON.stringify(data.data))
+
+      console.log("This request works to like product");
+    } catch (error) {
+      console.log("It does not work to like product");
+      console.log(error);
+    }
+  };
+
+  const handleUnLike = async () => {
+    const token = window.localStorage.getItem("token");
+    try {
+      const data = await axios.patch(
+        `https://secondhand-6-3-staging.herokuapp.com/v1/buku/${routes.id}/unlike`,
+        {
+          buku: routes.id,
+          like: unLikeValue,
+        },
+        {
+          headers: {
+            Token: token,
+          },
+        }
+      );
+      window.localStorage.setItem('userunlike', JSON.stringify(data.data))
+      console.log("This request works to like product");
+    } catch (error) {
+      console.log("It does not work to like product");
+      console.log(error);
+    }
+  };
 
   const handleChange = (e) => {
     /*console.log(e.target);*/
@@ -68,10 +132,9 @@ export default function Book() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored"
+        theme: "colored",
       });
       // console.log("This is a successful request, congratulations");
-
     } catch (error) {
       toast.error("Tawaran Anda Gagal Dikirim!", {
         position: "top-center",
@@ -81,11 +144,10 @@ export default function Book() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored"
+        theme: "colored",
       });
       // console.log("Unsuccessful post request");
     }
-    // window.location.reload();
   };
 
   useEffect(() => {
@@ -103,141 +165,121 @@ export default function Book() {
       setBooks(data);
     };
     postData();
-
-    const tawaran = async () => {
-      const token = window.localStorage.getItem("token");
-      const response = await axios.get(
-        `https://secondhand-6-3-staging.herokuapp.com/transaksi`,
-        {
-          headers: {
-            Token: token,
-          },
-        }
-      );
-      //   console.log(response);
-      const data = await response.data.data;
-      console.log("tawaran", data);
-      setTawaran(data);
-    };
-    tawaran();
   }, []);
 
   const getInfo = async () => {
-    const token = await window.localStorage.getItem('token')
-    const user = await window.localStorage.getItem('user')
+    const token = await window.localStorage.getItem("token");
+    const user = await window.localStorage.getItem("user");
 
     if (token) {
-      console.log('This means you have a token!')
-      if (JSON.parse(user).user.level === 'admin') {
-        console.log('This means you are authorized, you are an admin');
-        setIsShown(false)
-      } else if (JSON.parse(user).user.level === 'user') {
-        console.log('This means you are authorized, you are a user');
-        setIsShown(true)
+      console.log("This means you have a token!");
+      if (JSON.parse(user).user.level === "admin") {
+        console.log("This means you are authorized, you are an admin");
+        setIsShown(false);
+      } else if (JSON.parse(user).user.level === "user") {
+        console.log("This means you are authorized, you are a user");
+        setIsShown(true);
       } else {
-        console.log('You are neither. What are you?')
-        setIsShown(false)
+        console.log("You are neither. What are you?");
+        setIsShown(false);
       }
     } else {
-      console.log('Your token is not here. Login first')
-      setIsShown(false)
+      console.log("Your token is not here. Login first");
+      setIsShown(false);
     }
-  }
-
-  const cekTawaran = async () => {
-  };
-
-  const notify = () => {
-    toast("🦄 Wow so easy!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
   };
 
   return (
     <>
       <Layout>
         <Container>
-          {/* <ToastContainer /> */}
           {books
             ? books.map((a, i) => {
-              return (
-                <div key={i} className={styles.container}>
-                  <div className={styles.sideLeft}>
-                    <Carousel interval={null} className={styles.carousel}>
-                      {a.gambar.map((data, i) => (
-                        <Carousel.Item key={i}>
-                          <img src={data} alt="book" className={styles.img} />
-                        </Carousel.Item>
-                      ))}
-                    </Carousel>
+                return (
+                  <div key={i} className={styles.container}>
+                    <div className={styles.sideLeft}>
+                      <Carousel interval={null} className={styles.carousel}>
+                        {a.gambar.map((data, i) => (
+                          <Carousel.Item key={i}>
+                            <img src={data} alt="book" className={styles.img} />
+                          </Carousel.Item>
+                        ))}
+                      </Carousel>
 
-                    {/* <div>{JSON.stringify(router.query)}</div> */}
-                    <div className={styles.containerDeskripsi}>
-                      <p className={styles.titleDeskripsi}>Deskripsi</p>
-                      <p className={styles.deskripsi}>{a.deskripsi}</p>
+                      {/* <div>{JSON.stringify(router.query)}</div> */}
+                      <div className={styles.containerDeskripsi}>
+                        <p className={styles.titleDeskripsi}>Deskripsi</p>
+                        <p className={styles.deskripsi}>{a.deskripsi}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className={styles.sideRight}>
-                    <div className={styles.nego}>
-                      <p className={styles.judul}>{a.nama}</p>
-                      <p className={styles.pengarang}>{a.pengarang}</p>
-                      <p className={styles.harga}>Rp {a.harga}</p>
+                    <div className={styles.sideRight}>
+                      <div className={styles.nego}>
+                        <div className={styles.containerLike}>
+                          <p className={styles.judul}>{a.nama}</p>
+                          {like === true ? (
+                            <Button className={styles.btnlikeFill}>
+                              <HeartFill
+                                onClick={(e) => handleInputUnLike(e)}
+                                className={styles.likeFill}
+                                values={likeValue}
+                              />
+                            </Button>
+                          ) : (
+                            <Button className={styles.btnlikeFill}>
+                              <Heart
+                                onClick={(e) => handleInputLike(e)}
+                                className={styles.like}
+                                values={unLikeValue}
+                              />
+                            </Button>
+                          )}
+                        </div>
+                        <p className={styles.pengarang}>{a.pengarang}</p>
+                        <p className={styles.harga}>Rp {a.harga}</p>
 
-                      {/* {tawaran.id_barang && tawaran.id_user
-                          ? tawaran.map((b, i) => {
-                              return (
-                                <>
-                                  <p key={i}>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Aspernatur id aut nesciunt
-                                    eum nostrum est corrupti nemo eos rem, at
-                                    blanditiis recusandae dolore, laboriosam
-                                    enim nulla amet! Veritatis, reprehenderit
-                                    aperiam.
-                                    {b.harga_tawar}
-                                  </p>
-                                </>
-                              );
-                            })
-                          : "loading.."} */}
-                      {isShown == true
-                        ?
-                        <a>
-                          <Button
-                            className={styles.btnNego}
-                            onClick={handleShow}
-                          >
-                            <p className={styles.textBtn}>
-                              Saya tertarik dan ingin nego
-                            </p>
-                          </Button>
-                        </a>
-                        : ""}
-                    </div>
+                        {isShown == true ? (
+                          <a>
+                            <Button
+                              className={styles.btnNego}
+                              onClick={handleShow}
+                            >
+                              <p className={styles.textBtn}>
+                                Saya tertarik dan ingin nego
+                              </p>
+                            </Button>
+                          </a>
+                        ) : (
+                          <a>
+                            <Button
+                              className={styles.btnNego}
+                              onClick={() => router.push(`/login`)}
+                            >
+                              <p className={styles.textBtn}>
+                                Lakukan Login Terlebih Dahulu
+                              </p>
+                            </Button>
+                          </a>
+                          
+                        )}
+                      </div>
 
-                    <div className={styles.identitasPenjual}>
-                      <img
-                        src={a.penjual_barang.foto}
-                        alt="penjual"
-                        className={styles.imgPenjual}
-                      />
-                      <div className={styles.box}>
-                        <p className={styles.namaPenjual}>
-                          {a.penjual_barang.nama}
-                        </p>
-                        <p className={styles.kota}>{a.penjual_barang.kota}</p>
+                      <div className={styles.identitasPenjual}>
+                        <img
+                          src={a.penjual_barang.foto}
+                          alt="penjual"
+                          className={styles.imgPenjual}
+                        />
+                        <div className={styles.box}>
+                          <p className={styles.namaPenjual}>
+                            {a.penjual_barang.nama}
+                          </p>
+                          <p className={styles.kota}>{a.penjual_barang.kota}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })
+                );
+              })
             : "Loading..."}
 
           <Modal show={show} onHide={handleClose} centered>
@@ -285,8 +327,6 @@ export default function Book() {
                   variant="primary"
                   type="submit"
                   className={styles.btnSubmit}
-                //   onClick={notify}
-                // onClose={handleClose}
                 >
                   Save Changes
                 </Button>

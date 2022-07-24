@@ -57,6 +57,10 @@
   border-radius: 16px;
   padding: 24px 16px;
 }
+.containerLike{
+  display: flex;
+  justify-content: space-between;
+}
 .judul {
   font-family: "Poppins";
   font-style: normal;
@@ -64,6 +68,61 @@
   font-size: 16px;
   line-height: 24px;
   color: #000000;
+  max-width: 90%;
+}
+.like{
+  cursor: pointer;
+  width: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -20px;
+  margin-right: 8px;
+}
+.btnlike{
+  background: #fff !important;
+  color: #151515 !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
+  padding: 0;
+}
+.btnlike:focus {
+  background: #fff !important;
+  color: #008f8c !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
+}
+.btnlike:hover {
+  background: #fff !important;
+  color: #008f8c !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
+}
+.likeFill{
+  cursor: pointer;
+  color: #ff0000;
+  width: 20px;
+  height: 20px;
+  margin-top: -20px;
+  margin-right: 8px;
+}
+.btnlikeFill{
+  background: #fff !important;
+  color: #151515 !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
+  padding: 0;
+}
+.btnlikeFill:focus {
+  background: #fff !important;
+  color: #008f8c !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
+}
+.btnlikeFill:hover {
+  background: #fff !important;
+  color: #008f8c !important;
+  box-shadow: none !important;
+  border-color: #fff !important;
 }
 .pengarang {
   font-family: "Poppins";
