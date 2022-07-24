@@ -14,7 +14,6 @@ export default function Book() {
   const routes = router.query; //get id from /book
 
   const [books, setBooks] = useState([]);
-  const [tawaran, setTawaran] = useState([]);
   const [like, setLike] = useState(false); //untuk toggle btn
   const [likeValue, setLikeValue] = useState([]);
   const [unLikeValue, setUnLikeValue] = useState([]);
