@@ -14,9 +14,9 @@ export default function HomeBanner() {
     <>
       <Container className={styles.container}>
         <Carousel>
-          {imageBanner.map((a) => (
+          {imageBanner.map((a, i) => (
             // eslint-disable-next-line react/jsx-key
-            <Carousel.Item>
+            <Carousel.Item key={i}>
               <img src={a.image} alt="banner" className={styles.img} />
             </Carousel.Item>
           ))}

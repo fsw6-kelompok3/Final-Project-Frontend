@@ -6,60 +6,9 @@ import Layout from "../../components/general/Layout";
 import { ArrowLeftShort, Whatsapp } from "react-bootstrap-icons";
 import Link from "next/link";
 import { useRouter } from "next/router"
-import axios from '../api/axios'
-
-const penawaran = [
-  {
-    buyer_name: "Atala Aruna W.",
-    address: "Jakarta",
-    buyer_img: "/assets/img/fotoPembeli.png",
-    product_offer: [
-      {
-        datetime: "20 Apr, 14:04",
-        product_img: "/assets/img/bara.jpg",
-        product_name: "Bara",
-        product_price: "75650",
-        product_offer_price: "60000",
-      },
-      {
-        datetime: "20 Apr, 14:04",
-        product_img: "/assets/img/titik_nol.jpg",
-        product_name: "Titik Nol",
-        product_price: "104000",
-        product_offer_price: "60000",
-      },
-    ],
-  },
-  {
-    buyer_name: "Bruno Mars",
-    address: "Bali",
-    buyer_img: "/assets/img/fotoPenjual.png",
-    product_offer: [
-      {
-        datetime: "20 Apr, 14:04",
-        product_img: "/assets/img/titik_nol.jpg",
-        product_name: "Titik Nol",
-        product_price: "104000",
-        product_offer_price: "50000",
-      },
-    ],
-  },
-  // {
-  //   buyer: "",
-  //   address: "",
-  //   buyer_img: "",
-  //   datetime: "",
-  //   product_img:"",
-  //   product_name:"",
-  //   product_price:"",
-  //   product_offer_price:"",
-  // },
-];
+import axios from "axios"
 
 export default function OfferInfo(props) {
-  const router = useRouter()
-  const routes = router.query
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -67,40 +16,16 @@ export default function OfferInfo(props) {
 
   const [formValues, setFormValues] = useState({ transaksi: "" });
 
-  const [transaksiDetail, setTransaksiDetail] = useState([])
+  const [transaksiDetail, setTransaksiDetail] = useState();
 
-  const getData = async () => {
-    const token = await window.localStorage.getItem('token')
-
-    try {
-      const response = await axios.get(`/transaksi/seller/detail/${routes.id}`, {
-        headers: {
-          Token: token
-        }
-      });
-
-      setTransaksiDetail(response.data.data[0])
-      console.log(transaksiDetail)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  // update inputs value
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setFormValues((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const router = useRouter()
+  const routes = router.query
 
   const handleBerhasil = () => {
     const token = window.localStorage.getItem('token')
 
     try {
-      const response = axios.put(`/transaksi/seller/${routes.id}`, {
+      const response = axios.put(`https://secondhand-6-3-staging.herokuapp.com/transaksi/seller/${routes.id}`, {
         withCredentials: true,
         headers: {
           Token: token
@@ -117,7 +42,7 @@ export default function OfferInfo(props) {
     const token = window.localStorage.getItem('token')
 
     try {
-      const response = axios.put(`/transaksi/seller/${routes.id}/batal`, {
+      const response = axios.put(`https://secondhand-6-3-staging.herokuapp.com/transaksi/seller/${routes.id}/batal`, {
         withCredentials: true,
         headers: {
           Token: token
@@ -129,6 +54,36 @@ export default function OfferInfo(props) {
       console.log(error)
     }
   }
+
+  const getData = async () => {
+    const token = await window.localStorage.getItem('token')
+
+    try {
+      const response = await axios.get(`https://secondhand-6-3-staging.herokuapp.com/transaksi/seller/detail/${routes.id}`, {
+        headers: {
+          Token: token
+        }
+      });
+
+      if (response != null) {
+        setTransaksiDetail(response.data.data[0])
+      }
+
+      console.log(transaksiDetail)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  // update inputs value
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormValues((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   // Form Submit function
   const handleSubmit = (e) => {
@@ -150,7 +105,6 @@ export default function OfferInfo(props) {
       <Layout>
         <Container className={styles.container}>
           <div className={styles.containerForm}>
-
             <div className={styles.boxLeft}>
               <Link href="/dashboard">
                 <a>
@@ -159,62 +113,72 @@ export default function OfferInfo(props) {
               </Link>
             </div>
 
-            <div className={styles.boxRight}>
-              <div className={styles.containerPenawaran}>
+            {transaksiDetail.map((data, i) => {
+              <div className={styles.boxRight} key={i}>
+                <div className={styles.containerPenawaran}>
 
-                <div className={styles.boxContainerTop}>
-                  <img
-                    src="/assets/img/pict.png"
-                    alt="user"
-                    className={styles.imgPembeli}
-                  />
-                  <div className={styles.boxInner}>
-                    <p className={styles.username}>Nama Pembeli</p>
-                    <p className={styles.address}>Alamat Pembeli</p>
+                  <div className={styles.boxContainerTop}>
+
+                    <img
+                      src={transaksiDetail.transaksi_user[i].detail_user.foto != null
+                        ? transaksiDetail.transaksi_user[i].detail_user.foto
+                        : "/assets/img/pict.png"}
+                      alt="user"
+                      className={styles.imgPembeli}
+                    />
+                    <div className={styles.boxInner}>
+                      <p className={styles.username}>{transaksiDetail.transaksi_user[i].detail_user.nama}</p>
+                      <p className={styles.address}>{transaksiDetail.transaksi_user[i].detail_user.alamat}</p>
+                    </div>
+
                   </div>
-                </div>
 
-                <div className={styles.boxContainerBottom}>
-                  <p className={styles.header}>Daftar Produkmu yang Ditawar</p>
+                  <div className={styles.boxContainerBottom}>
+                    <p className={styles.header}>Daftar Produkmu yang Ditawar</p>
 
-                  <div className={styles.boxProduct}>
-                    <div className={styles.boxAttributeProduct}>
-                      <img
-                        src="/assets/img/bara.jpg"
-                        alt="product"
-                        className={styles.imgProduct}
-                      />
+                    <div className={styles.boxProduct}>
+                      <div className={styles.boxAttributeProduct}>
+                        <img
+                          src={transaksiDetail == undefined
+                            ? "/assets/img/bara.jpg"
+                            : transaksiDetail.gambar
+                          }
+                          alt="product"
+                          className={styles.imgProduct}
+                        />
 
-                      <div className={styles.boxDetailProduct}>
-                        <div className={styles.boxDetailTop}>
-                          <p className={styles.subTitle}>Penawaran produk</p>
-                          <p className={styles.dateTime}>20 Apr, 14:04</p>
-                        </div>
-                        <div className={styles.boxDetailBottom}>
-                          <p className={styles.productName}>Jam Tangan Casio</p>
-                          <p className={styles.price}>Rp 250.000</p>
-                          <p className={styles.offer}>Ditawar Rp 200.000</p>
+                        <div className={styles.boxDetailProduct}>
+                          <div className={styles.boxDetailTop}>
+                            <p className={styles.subTitle}>Penawaran produk</p>
+                            {/**<p className={styles.dateTime}>{console.log("")}</p> */}
+                          </div>
+                          <div className={styles.boxDetailBottom}>
+                            <p className={styles.productName}>{transaksiDetail.nama}</p>
+                            <p className={styles.price}>Rp {transaksiDetail.harga}</p>
+                            <p className={styles.offer}>Ditawar Rp {console.log(transaksiDetail.transaksi_user[i])}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className={styles.boxBtn}>
-                      <Button onClick={handleShow} className={styles.btnStatus}>
-                        Status
-                      </Button>
-                      <Button
-                        href="https://api.whatsapp.com/send?phone=6289693052276"
-                        className={styles.btnWa}
-                      >
-                        Hubungi di
-                        <Whatsapp className={styles.iconSosmed} />
-                      </Button>
+                      <div className={styles.boxBtn}>
+                        <Button onClick={handleShow} className={styles.btnStatus}>
+                          Status
+                        </Button>
+                        <Button
+                          href="https://api.whatsapp.com/send?phone=6289693052276"
+                          className={styles.btnWa}
+                        >
+                          Hubungi di
+                          <Whatsapp className={styles.iconSosmed} />
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
 
+                </div>
               </div>
-            </div>
+            })
+            }
           </div>
 
           <Modal {...props} show={show} onHide={handleClose} centered>

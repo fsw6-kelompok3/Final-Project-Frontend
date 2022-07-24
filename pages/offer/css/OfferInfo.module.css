@@ -12,6 +12,7 @@
 .prevBtn {
   width: 28px;
   height: 28px;
+  cursor: pointer;
 }
 .prevBtn:hover {
   color: #008f8c;
@@ -30,6 +31,7 @@
   padding: 16px;
   display: flex;
   margin-bottom: 24px;
+  cursor: pointer;
 }
 .imgPembeli {
   width: 48px;

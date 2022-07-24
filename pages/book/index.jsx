@@ -38,7 +38,7 @@ const Index = () => {
     //e.preventDefault()
     handleFilter()
     setBtnValue(e.currentTarget.value)
-  
+
   }
 
   const handleFilter = async () => {
