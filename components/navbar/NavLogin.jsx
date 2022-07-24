@@ -25,6 +25,8 @@ export const NavLogin = () => {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState('')
   const [transaksi, setTransaksi] = useState([])
+  const [searchText,setSearchText] = useState("")
+  const [books,setPlayerData] = useState([])
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -59,8 +61,23 @@ export const NavLogin = () => {
     }
   }
 
+  // const Search = async () => {
+  //   try {
+  //     setShow(true);
+  //     const response = await axios.get('https://secondhand-6-3-staging.herokuapp.com/cari?nama='+searchText, {
+  //     })
+  //     console.log('This request works')
+  //     console.log(response.data)
+  //     setPlayerData(response.data)
+  //     setShow(false);
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
   useEffect(() => {
     getTransaksi()
+    // Search()
   }, [])
 
   return (
@@ -82,6 +99,7 @@ export const NavLogin = () => {
                 type="search"
                 placeholder="Cari di sini.."
                 aria-label="Search"
+                onChange={e=>setSearchText(e.target.value)}
                 className={styles.formsearch}
               />
               <button type="search" className={styles.btnsearch}>

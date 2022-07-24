@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./css/ListProduct.module.css";
 import { Button, Container } from "react-bootstrap";
-import { Search } from "react-bootstrap-icons";
+import { Search, SearchHeart } from "react-bootstrap-icons";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
@@ -12,7 +12,7 @@ const Index = () => {
   const router = useRouter();
   const [books, setBooks] = useState([]);
   const [kategori, setKategori] = useState([])
-
+  const [searchText,setSearchText] = useState("")
   const [btnValue, setBtnValue] = useState('');
 
   // console.log("jsjjsjs", books);
@@ -60,6 +60,7 @@ const Index = () => {
   useEffect(() => {
     getKategori()
     postData()
+    
   }, []);
 
   // console.log(books);
@@ -84,7 +85,16 @@ const Index = () => {
           )}
         </div>
         <div className={styles.produkContainer}>
-          {books.map((book, i) => {
+          {books.filter((value) => {
+            if (searchText === ""){
+              return value
+            }else if (
+              value.nama.toLowerCase().includes(searchText.toLowerCase())
+            ){
+              return value;
+            }
+          } )
+          .map((book, i) => {
             // return <ProdukCard key={i} props={book}/>
             return (
               <div key={i} className={styles.card}>
