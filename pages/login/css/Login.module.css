@@ -112,6 +112,9 @@
   font-weight: 700;
   color: #008f8c;
 }
+.txtRegisterLink{
+  text-decoration: none;
+}
 .alert {
   font-family: "Poppins";
   font-style: normal;

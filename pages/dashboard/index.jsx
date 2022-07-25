@@ -72,7 +72,7 @@ export default function Seller() {
           <div className={styles.cardTwo}>
             <p className={styles.header}>Kategori</p>
             <Link href="/dashboard">
-              <a>
+              <a className={styles.headerLink}>
                 <div className={styles.item}>
                   <Box className={styles.icon} />
                   <p className={styles.itemText}>Semua Produk</p>
@@ -82,7 +82,7 @@ export default function Seller() {
             </Link>
             <hr />
             <Link href="/dashboard/diminati">
-              <a>
+              <a className={styles.headerLink}>
                 <div className={styles.item}>
                   <Heart className={styles.icon} />
                   <p className={styles.itemText}>Diminati</p>
@@ -92,7 +92,7 @@ export default function Seller() {
             </Link>
             <hr />
             <Link href="/dashboard/terjual">
-              <a>
+              <a className={styles.headerLink}>
                 <div className={styles.item}>
                   <CurrencyDollar className={styles.icon} />
                   <p className={styles.itemText}>Terjual</p>
@@ -104,7 +104,7 @@ export default function Seller() {
           <div className={styles.produkContainer}>
             <div className={styles.cardPlus}>
               <Link href="/dashboard/book/add">
-                <a>
+                <a className={styles.headerLink}>
                   <p className={styles.txtCardPlus}>
                     +
                     <br />
