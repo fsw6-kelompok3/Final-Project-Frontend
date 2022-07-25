@@ -152,6 +152,9 @@
   color: #000000;
   margin-bottom: 24px;
 }
+.headerLink{
+  text-decoration:none;
+}
 .item {
   display: flex;
   text-decoration: none;

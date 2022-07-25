@@ -164,7 +164,7 @@ export default function Login() {
                 Belum punya akun?
                 <span className={styles.registerLink}>
                   <Link href="/register">
-                    <a> Daftar di sini</a>
+                    <a className={styles.txtRegisterLink}> Daftar di sini</a>
                   </Link>
                 </span>
               </p>
