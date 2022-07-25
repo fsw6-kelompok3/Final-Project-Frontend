@@ -215,7 +215,7 @@
   text-align: center;
   padding-top: 70%;
   text-decoration: none;
-  color:#000;
+  color:#000!important;
 }
 .txtCardPlus:hover {
   color: #008f8c;
