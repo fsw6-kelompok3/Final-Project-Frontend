@@ -164,7 +164,7 @@
   text-decoration: none;
 }
 .item:hover {
-  color: #008f8c;
+  color: #008f8c!important;
 }
 .icon {
   margin: auto 0;
