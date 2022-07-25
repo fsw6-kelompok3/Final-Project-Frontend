@@ -154,6 +154,7 @@
 }
 .item {
   display: flex;
+  text-decoration: none;
 }
 .item:hover {
   color: #008f8c;
