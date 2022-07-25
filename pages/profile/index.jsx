@@ -177,7 +177,7 @@ export default function Profile() {
     const prevbtn = async () => {
         const user = window.localStorage.getItem('user')
 
-        if (JSON.parse(user).user.kota == null || JSON.parse(user).user.foto == null || JSON.parse(user).user.alamat == null || JSON.parse(user).user.nohp == null) {
+        if (JSON.parse(user).user.kota == null || JSON.parse(user).user.foto == null || JSON.parse(user).user.alamat == null) {
             setIdentify(false)
         } else {
             setIdentify(true)
@@ -342,7 +342,7 @@ export default function Profile() {
                                     <p className={styles.label}>No Handphone*</p>
                                     <input
                                         required
-                                        name="telepon"
+                                        name="nohp"
                                         type="number"
                                         placeholder="contoh: 628123456789"
                                         className={styles.input}

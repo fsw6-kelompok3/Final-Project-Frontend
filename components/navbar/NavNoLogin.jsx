@@ -30,7 +30,7 @@ export const NavNoLogin = () => {
               />
             </NavbarBrand>
 
-            <Form.Group className={styles.search}>
+            {/* <Form.Group className={styles.search}>
               <input
                 type="search"
                 placeholder="Cari di sini.."
@@ -40,13 +40,13 @@ export const NavNoLogin = () => {
               <button type="search" className={styles.btnsearch}>
                 <Search className={styles.iconsearch}/>
               </button>
-            </Form.Group>
+            </Form.Group> */}
 
             {/* <NavbarToggle aria-controls="basic-navbar-nav" /> */}
           </div>
           <div>
             <Button href="/register" className={styles.btn}>
-              <img src="/assets/img/fi_log-in.png" alt="icon" width="20px" height="20px"/>
+              <img src="/assets/img/fi_log-in.png" alt="icon" width="20px" height="20px" />
               <p className={styles.txt}>Register</p>
             </Button>
           </div>

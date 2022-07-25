@@ -84,9 +84,9 @@ export default function Book() {
         }
       );
       window.localStorage.setItem('userunlike', JSON.stringify(data.data))
-      console.log("This request works to like product");
+      console.log("This request works to unlike product");
     } catch (error) {
-      console.log("It does not work to like product");
+      console.log("It does not work to unlike product");
       console.log(error);
     }
   };
@@ -195,28 +195,29 @@ export default function Book() {
         <Container>
           {books
             ? books.map((a, i) => {
-                return (
-                  <div key={i} className={styles.container}>
-                    <div className={styles.sideLeft}>
-                      <Carousel interval={null} className={styles.carousel}>
-                        {a.gambar.map((data, i) => (
-                          <Carousel.Item key={i}>
-                            <img src={data} alt="book" className={styles.img} />
-                          </Carousel.Item>
-                        ))}
-                      </Carousel>
+              return (
+                <div key={i} className={styles.container}>
+                  <div className={styles.sideLeft}>
+                    <Carousel interval={null} className={styles.carousel}>
+                      {a.gambar.map((data, i) => (
+                        <Carousel.Item key={i}>
+                          <img src={data} alt="book" className={styles.img} />
+                        </Carousel.Item>
+                      ))}
+                    </Carousel>
 
-                      {/* <div>{JSON.stringify(router.query)}</div> */}
-                      <div className={styles.containerDeskripsi}>
-                        <p className={styles.titleDeskripsi}>Deskripsi</p>
-                        <p className={styles.deskripsi}>{a.deskripsi}</p>
-                      </div>
+                    {/* <div>{JSON.stringify(router.query)}</div> */}
+                    <div className={styles.containerDeskripsi}>
+                      <p className={styles.titleDeskripsi}>Deskripsi</p>
+                      <p className={styles.deskripsi}>{a.deskripsi}</p>
                     </div>
-                    <div className={styles.sideRight}>
-                      <div className={styles.nego}>
-                        <div className={styles.containerLike}>
-                          <p className={styles.judul}>{a.nama}</p>
-                          {like === true ? (
+                  </div>
+                  <div className={styles.sideRight}>
+                    <div className={styles.nego}>
+                      <div className={styles.containerLike}>
+                        <p className={styles.judul}>{a.nama}</p>
+                        {isShown == true ?
+                          like === true ?
                             <Button className={styles.btnlikeFill}>
                               <HeartFill
                                 onClick={(e) => handleInputUnLike(e)}
@@ -224,7 +225,7 @@ export default function Book() {
                                 values={likeValue}
                               />
                             </Button>
-                          ) : (
+                            :
                             <Button className={styles.btnlikeFill}>
                               <Heart
                                 onClick={(e) => handleInputLike(e)}
@@ -232,54 +233,55 @@ export default function Book() {
                                 values={unLikeValue}
                               />
                             </Button>
-                          )}
-                        </div>
-                        <p className={styles.pengarang}>{a.pengarang}</p>
-                        <p className={styles.harga}>Rp {a.harga}</p>
-
-                        {isShown == true ? (
-                          <a>
-                            <Button
-                              className={styles.btnNego}
-                              onClick={handleShow}
-                            >
-                              <p className={styles.textBtn}>
-                                Saya tertarik dan ingin nego
-                              </p>
-                            </Button>
-                          </a>
-                        ) : (
-                          <a>
-                            <Button
-                              className={styles.btnNego}
-                              onClick={() => router.push(`/login`)}
-                            >
-                              <p className={styles.textBtn}>
-                                Lakukan Login Terlebih Dahulu
-                              </p>
-                            </Button>
-                          </a>
-                          
-                        )}
+                          : ""
+                        }
                       </div>
+                      <p className={styles.pengarang}>{a.pengarang}</p>
+                      <p className={styles.harga}>Rp {a.harga}</p>
 
-                      <div className={styles.identitasPenjual}>
-                        <img
-                          src={a.penjual_barang.foto}
-                          alt="penjual"
-                          className={styles.imgPenjual}
-                        />
-                        <div className={styles.box}>
-                          <p className={styles.namaPenjual}>
-                            {a.penjual_barang.nama}
-                          </p>
-                          <p className={styles.kota}>{a.penjual_barang.kota}</p>
-                        </div>
+                      {isShown == true ? (
+                        <a>
+                          <Button
+                            className={styles.btnNego}
+                            onClick={handleShow}
+                          >
+                            <p className={styles.textBtn}>
+                              Saya tertarik dan ingin nego
+                            </p>
+                          </Button>
+                        </a>
+                      ) : (
+                        <a>
+                          <Button
+                            className={styles.btnNego}
+                            onClick={() => router.push(`/login`)}
+                          >
+                            <p className={styles.textBtn}>
+                              Login sebagai User
+                            </p>
+                          </Button>
+                        </a>
+
+                      )}
+                    </div>
+
+                    <div className={styles.identitasPenjual}>
+                      <img
+                        src={a.penjual_barang.foto}
+                        alt="penjual"
+                        className={styles.imgPenjual}
+                      />
+                      <div className={styles.box}>
+                        <p className={styles.namaPenjual}>
+                          {a.penjual_barang.nama}
+                        </p>
+                        <p className={styles.kota}>{a.penjual_barang.kota}</p>
                       </div>
                     </div>
                   </div>
-                );
-              })
+                </div>
+              );
+            })
             : "Loading..."}
 
           <Modal show={show} onHide={handleClose} centered>

@@ -24,7 +24,7 @@ export default function Offer() {
         const token = window.localStorage.getItem('token')
 
         try {
-            const response = await axios.put(`https://secondhand-6-3-staging.herokuapp.com/transaksi/seller/${routes.id}`, {
+            const response = await axios.put(`https://secondhand-6-3-staging.herokuapp.com/transaksi/seller/${routes.id}`, routes.id, {
                 withCredentials: true,
                 headers: {
                     Token: token
