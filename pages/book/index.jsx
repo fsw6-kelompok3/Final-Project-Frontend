@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
 
-const Index = () => {
+const Index = (state) => {
   // const books = data.data;
   const router = useRouter();
   const [books, setBooks] = useState([]);
@@ -60,6 +60,9 @@ const Index = () => {
     getKategori()
     postData()
 
+    if (state != null) {
+      console.log(state)
+    }
   }, []);
 
   // console.log(books);

@@ -25,8 +25,8 @@ export const NavLogin = () => {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState('')
   const [transaksi, setTransaksi] = useState([])
-  const [searchText,setSearchText] = useState("")
-  const [books,setPlayerData] = useState([])
+  const [searchText, setSearchText] = useState("")
+  const [books, setBooks] = useState([])
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -45,7 +45,7 @@ export const NavLogin = () => {
     router.push('/login')
   }
 
-  const getTransaksi = async () => {
+  const getTransaksi = async (transaksi) => {
     const token = window.localStorage.getItem('token')
     try {
       const response = await axios.get('https://secondhand-6-3-staging.herokuapp.com/transaksi', {
@@ -56,6 +56,7 @@ export const NavLogin = () => {
       console.log('This request works')
       console.log(response.data.data)
       setTransaksi(response.data.data)
+      return transaksi
     } catch (error) {
       console.log(error)
     }
@@ -74,6 +75,23 @@ export const NavLogin = () => {
   //     console.log(error)
   //   }
   // }
+
+  const search = async () => {
+    try {
+      const response = await axios.get('https://secondhand-6-3-staging.herokuapp.com/cari?nama=' + searchText, {
+      })
+
+      console.log('You get search data!')
+      console.log(response.data.data[0])
+      setBooks(response.data.data[0])
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSearch = async (e) => {
+    setSearchText(e.target.value)
+  }
 
   useEffect(() => {
     getTransaksi()
@@ -99,10 +117,10 @@ export const NavLogin = () => {
                 type="search"
                 placeholder="Cari di sini.."
                 aria-label="Search"
-                onChange={e=>setSearchText(e.target.value)}
+                onChange={handleSearch}
                 className={styles.formsearch}
               />
-              <button type="search" className={styles.btnsearch}>
+              <button type="search" className={styles.btnsearch} onClick={search}>
                 <Search className={styles.iconsearch} />
               </button>
             </Form.Group>
@@ -128,7 +146,7 @@ export const NavLogin = () => {
                     <div key={i}>
                       <Dropdown.Item
                         className={styles.boxAttributeProduct}
-                        onClick={() => router.push(`/offer-info/${a.id}`)}>
+                      >
                         <img
                           src={a.nama_buku.gambar[0]}
                           alt="product"
