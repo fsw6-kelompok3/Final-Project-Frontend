@@ -164,6 +164,10 @@
 }
 .icon {
   margin: auto 0;
+  color: #000;
+}
+.icon:hover {
+  color: #008f8c;
 }
 .itemText {
   text-decoration: none;
@@ -211,6 +215,7 @@
   text-align: center;
   padding-top: 70%;
   text-decoration: none;
+  color:#000;
 }
 .txtCardPlus:hover {
   color: #008f8c;
