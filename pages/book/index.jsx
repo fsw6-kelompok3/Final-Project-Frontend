@@ -7,12 +7,12 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
 
-const Index = () => {
+const Index = (state) => {
   // const books = data.data;
   const router = useRouter();
   const [books, setBooks] = useState([]);
   const [kategori, setKategori] = useState([])
-  const [searchText,setSearchText] = useState("")
+  const [searchText, setSearchText] = useState("")
   const [btnValue, setBtnValue] = useState('');
 
   // console.log("jsjjsjs", books);
@@ -36,12 +36,11 @@ const Index = () => {
 
   const handleInput = (e) => {
     //e.preventDefault()
-    handleFilter()
     setBtnValue(e.currentTarget.value)
-  
+    handleFilter(btnValue)
   }
 
-  const handleFilter = async () => {
+  const handleFilter = async (btnValue) => {
     try {
       const response = await axios.post('https://secondhand-6-3-staging.herokuapp.com/user/kategori', {
         kategori_id: btnValue
@@ -60,7 +59,10 @@ const Index = () => {
   useEffect(() => {
     getKategori()
     postData()
-    
+
+    if (state != null) {
+      console.log(state)
+    }
   }, []);
 
   // console.log(books);
@@ -86,37 +88,37 @@ const Index = () => {
         </div>
         <div className={styles.produkContainer}>
           {books.filter((value) => {
-            if (searchText === ""){
+            if (searchText === "") {
               return value
-            }else if (
+            } else if (
               value.nama.toLowerCase().includes(searchText.toLowerCase())
-            ){
+            ) {
               return value;
             }
-          } )
-          .map((book, i) => {
-            // return <ProdukCard key={i} props={book}/>
-            return (
-              <div key={i} className={styles.card}>
-                <img
-                  src={book.gambar[0]}
-                  alt={book.nama}
-                  className={styles.imgProduk}
-                  onClick={() => router.push(`/book/${book.id}`)} //post id buku ke /book/id
-                />
-                <p className={styles.pengarang}>{book.pengarang}</p>
-
-                <p
-                  className={styles.judul}
-                  onClick={() => router.push(`/book/${book.id}`)}
-                >
-                  {book.nama}
-                </p>
-
-                <p className={styles.harga}>Rp {book.harga}</p>
-              </div>
-            );
           })
+            .map((book, i) => {
+              // return <ProdukCard key={i} props={book}/>
+              return (
+                <div key={i} className={styles.card}>
+                  <img
+                    src={book.gambar[0]}
+                    alt={book.nama}
+                    className={styles.imgProduk}
+                    onClick={() => router.push(`/book/${book.id}`)} //post id buku ke /book/id
+                  />
+                  <p className={styles.pengarang}>{book.pengarang}</p>
+
+                  <p
+                    className={styles.judul}
+                    onClick={() => router.push(`/book/${book.id}`)}
+                  >
+                    {book.nama}
+                  </p>
+
+                  <p className={styles.harga}>Rp {book.harga}</p>
+                </div>
+              );
+            })
           }
         </div>
       </Container >

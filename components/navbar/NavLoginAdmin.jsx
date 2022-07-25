@@ -78,7 +78,7 @@ export const NavLoginAdmin = () => {
               />
             </NavbarBrand>
 
-            <Form.Group className={styles.search}>
+            {/* <Form.Group className={styles.search}>
               <input
                 type="search"
                 placeholder="Cari di sini.."
@@ -88,7 +88,7 @@ export const NavLoginAdmin = () => {
               <button type="search" className={styles.btnsearch}>
                 <Search className={styles.iconsearch} />
               </button>
-            </Form.Group>
+            </Form.Group> */}
 
             {/* <NavbarToggle aria-controls="basic-navbar-nav" /> */}
           </div>
@@ -97,8 +97,6 @@ export const NavLoginAdmin = () => {
               <a>
                 <ListUl
                   className={styles.btnIcon}
-                  onClick={() => {
-                  }}
                 />
               </a>
             </Link>
@@ -111,16 +109,18 @@ export const NavLoginAdmin = () => {
             </Link>
             */ }
             <Dropdown align="end">
-              <Dropdown.Toggle className={styles.btnDropdown}>
-                <Bell className={styles.btnIconDropdown} />
-              </Dropdown.Toggle>
-              <Dropdown.Menu className={styles.menuNotif}>
+              <Link href='/offer'>
+                <Dropdown.Toggle className={styles.btnDropdown}>
+                  <Bell className={styles.btnIconDropdown} />
+                </Dropdown.Toggle>
+              </Link>
+              {/* <Dropdown.Menu className={styles.menuNotif}>
                 {transaksi.map((a, i) => {
                   return (
                     <div key={i}>
                       <Dropdown.Item
                         className={styles.boxAttributeProduct}
-                        onClick={() => router.push(`/offer-info/${a.id}`)}>
+                        onClick={() => router.push(`/offer/${a.id}`)}>
                         <img
                           src={a.nama_buku.gambar[0]}
                           alt="product"
@@ -145,7 +145,7 @@ export const NavLoginAdmin = () => {
                     </div>
                   )
                 })}
-              </Dropdown.Menu>
+              </Dropdown.Menu> */}
             </Dropdown>
 
             <Dropdown align="end">
